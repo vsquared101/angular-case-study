@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "full_name": "Mr Charles Stewart",
+      "short_name": "Charles Stewart",
+      "ssn": "11-22-3333",
+      "dob": "10-10-1968",
+      "gender": "Male",
+      "marital_status": "Married",
+      "citizenship": "United States",
+      "country_of_residence": "Australia",
+      "passport": "H1234567",
+      "country_of_issuance": "Australia",
+      "issuance_date": "15-04-2010",
+      "expiration_date": "15-04-2020",
+      "no_of_dependents": 2
+    },
+    {
+      "id": 2,
+      "full_name": "Ms Diana Stewart",
+      "short_name": "Diana Stewart",
+      "ssn": "44-55-6666",
+      "dob": "21-12-1977",
+      "gender": "Female",
+      "marital_status": "Married",
+      "citizenship": "United States",
+      "country_of_residence": "Australia",
+      "passport": "M2231626",
+      "country_of_issuance": "Australia",
+      "issuance_date": "11-07-2012",
+      "expiration_date": "11-07-2022",
+      "no_of_dependents": 1
+    },
+    {
+      "id": 3,
+      "full_name": "Mr Phillip Stewart",
+      "short_name": "Phil Stewart",
+      "ssn": "55-66-7777",
+      "dob": "09-04-1975",
+      "gender": "Male",
+      "marital_status": "Married",
+      "citizenship": "United States",
+      "country_of_residence": "Australia",
+      "passport": "H2345678",
+      "country_of_issuance": "Australia",
+      "issuance_date": "25-03-2010",
+      "expiration_date": "25-03-2020",
+      "no_of_dependents": 3
+    }
+  ]
+}
