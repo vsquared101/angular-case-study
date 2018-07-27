@@ -1,27 +1,31 @@
 # AngularCaseStudy
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+A case study in Angular(version 4+) which involves creation of a "Trustee management" app. 
+No back-end will be created for this application as a lightweight NPM package called json-server will be used instead.
+Data that is to be stored/retrieved will be handled by using a db.json file which will act as a substitute for a database(for e.g. MongoDB).
+The json-server package mentioned above will provide us with the common REST endpoints that allow us to perform CRUD operations on the data using the Angular app.
 
-## Development server
+## Tech-stack used
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular(version 6.x)
+- Bootstrap(version 4.x)
+- JSON
+- Node basics(incl. addition/removal of npm packages)
 
-## Code scaffolding
+## Adding Bootstrap v4+ to an Angular application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Install bootstrap, jquery and popper.js npm packages with the --save option(production dependencies in package.json)
 
-## Build
+> npm install bootstrap jquery popper.js --save
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Once the above packages are installed add the below import to the global `styles.css` file under the src/ folder:
 
-## Running unit tests
+```css
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Now run the application using `ng serve`(for local machine) or `ng serve --host 0.0.0.0 --port 8080 --public-host $C9_HOSTNAME`(for cloud9) and navigate to the home page.
+If bootstrap was installed and setup correctly we should see the application home page styled differently.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
