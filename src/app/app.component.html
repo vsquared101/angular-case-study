@@ -47,9 +47,9 @@
               <td>{{ user.short_name}}</td>
               <td>{{ user.country_of_residence }}</td>
               <td>{{ user.ssn }}</td>
-              <td><u>View</u></td>
-              <td><u>Edit</u></td>
-              <td><u>Delete</u></td>
+              <td><button class="btn btn-outline-dark btn-sm">View</button></td>
+              <td><button class="btn btn-outline-info btn-sm">Edit</button></td>
+              <td><button class="btn btn-outline-danger btn-sm" (click)="deleteUser(user.id)">Delete</button></td>
             </tr>
           </tbody>
         </table>

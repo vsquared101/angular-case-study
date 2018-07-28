@@ -20,4 +20,11 @@ export class AppComponent implements OnInit{
         this.users = data;
       });
   }
+
+  deleteUser(id: number) {
+    this.service.deleteUser(id)
+      .subscribe((data) => {
+        this.service.getUsers().subscribe((data) => this.users = data);
+    });
+  }
 }
