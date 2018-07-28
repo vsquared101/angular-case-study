@@ -102,3 +102,51 @@ If bootstrap was installed and setup correctly we should see the application hom
     
 - This should start a local server at http://localhost:3000 with the basic REST HTTP endpoints setup for us.
 - Accessing the endpoints such as GET - /users, /users/1, etc. should give us appropriate JSON response.
+
+## Creating a service to load data exposed by json-server endpoints
+
+- Create a new service using Angular CLI
+
+  > ng generate service user
+
+- Before we use the above service we need to first import the HttpClientModule in app.module.ts
+
+```typescript
+  import { HttpClientModule } from '@angular/common/http';
+  ...
+  imports: [
+      BrowserModule,
+      `HttpClientModule`
+    ]
+  ...
+```
+- Now open the user.service.ts file and use DI to inject and use the HttpClient to make REST API calls:
+
+```typescript
+
+  import { Injectable } from '@angular/core';
+  import { HttpClient } from '@angular/common/http';
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UserService {
+
+    constructor(private http: HttpClient) { }
+
+    getUsers() {
+      return this.http.get('http://localhost:3000/users');
+    }
+  }
+
+```
+
+- To allow the usage of this service throughout our application(all the modules, components, etc.) add the service to the  `providers` array in app.module.ts:
+
+```typescript
+
+  import { UserService } from './user.service';
+
+  providers: [UserService]
+
+```
