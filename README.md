@@ -116,7 +116,7 @@ If bootstrap was installed and setup correctly we should see the application hom
   ...
   imports: [
       BrowserModule,
-      `HttpClientModule`
+      HttpClientModule
     ]
   ...
 ```
@@ -146,7 +146,8 @@ If bootstrap was installed and setup correctly we should see the application hom
 ```typescript
 
   import { UserService } from './user.service';
-
+  ...
+  ...
   providers: [UserService]
 
 ```
