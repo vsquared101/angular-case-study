@@ -12,11 +12,20 @@ export class CreateUserComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.userForm = fb.group({
+      'prefix': ['', Validators.required],
       'firstname': ['', Validators.required],
+      'middlename': [''],
       'lastname': ['', Validators.required],
       'shortname': ['', Validators.required],
       'ssn': ['', [Validators.required, Validators.pattern(this.ssnPattern)]],
-      'gender': ['', Validators.required]
+      'gender': ['', Validators.required],
+      'countryOfResidence': ['', Validators.required],
+      'passport': ['', Validators.required],
+      'countryOfIssuance': ['', Validators.required],
+      'issuanceDate' : [''],
+      'expirationDate' : [''],
+      'noOfDependents' : [''],
+      'maritalStatus' : ['']
     });
     
   }

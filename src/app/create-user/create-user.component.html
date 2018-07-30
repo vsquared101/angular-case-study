@@ -2,6 +2,11 @@
     <h2>User Creation</h2>
     <hr>
     <form [formGroup]="userForm" (submit)="createUserRecord(userForm.value)">
+      <div class="alert alert-danger" *ngIf="(userForm.controls.prefix.touched || userForm.controls.prefix.dirty) && userForm.controls.prefix.invalid">
+            <div *ngIf="userForm.controls.prefix.errors.required">
+                Prefix/salutation is required.
+            </div>
+      </div>
       <div class="alert alert-danger" *ngIf="(userForm.controls.firstname.touched || userForm.controls.firstname.dirty) && userForm.controls.firstname.invalid">
             <div *ngIf="userForm.controls.firstname.errors.required">
                 First name is required.
@@ -25,10 +30,30 @@
                 SSN should have only numeric values(max 9).
             </div>
       </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.countryOfResidence.touched || userForm.controls.countryOfResidence.dirty) && userForm.controls.countryOfResidence.invalid">
+            <div *ngIf="userForm.controls.countryOfResidence.errors.required">
+                Please select a country of residence.
+            </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.passport.touched || userForm.controls.passport.dirty) && userForm.controls.passport.invalid">
+            <div *ngIf="userForm.controls.passport.errors.required">
+                Passport is required.
+            </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.countryOfIssuance.touched || userForm.controls.countryOfIssuance.dirty) && userForm.controls.countryOfIssuance.invalid">
+            <div *ngIf="userForm.controls.countryOfIssuance.errors.required">
+                Please select a country of issuance.
+            </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.gender.touched || userForm.controls.gender.dirty) && userForm.controls.gender.invalid">
+            <div *ngIf="userForm.controls.gender.errors.required">
+                Please select a value for gender.
+            </div>
+      </div>
       <div class="form-group row">
         <label for="inputPrefix" class="col-sm-2 col-form-label">Prefix</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputPrefix">
+            <select class="form-control" id="inputPrefix" formControlName="prefix">
               <option>Please select...</option>
               <option>Mr</option>
               <option>Ms</option>
@@ -37,7 +62,7 @@
         </div>
         <label for="inputResidencyCountry" class="col-sm-4 col-form-label">Country of Residence</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputResidencyCountry">
+            <select class="form-control" id="inputResidencyCountry" formControlName="countryOfResidence">
               <option>Please select...</option>
               <option>Australia</option>
               <option>India</option>
@@ -53,18 +78,18 @@
         </div>
         <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputPassport">
+          <input type="text" class="form-control" id="inputPassport" formControlName="passport">
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <label for="inputMiddleName" class="col-sm-2 col-form-label">Middle Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputMiddleName">
+          <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename">
         </div>
         <label for="inputIssuanceCountry" class="col-sm-4 col-form-label">Country of Issuance</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputIssuanceCountry">
+            <select class="form-control" id="inputIssuanceCountry" formControlName="countryOfIssuance">
               <option>Please select...</option>
               <option>Australia</option>
               <option>India</option>
@@ -80,7 +105,7 @@
         </div>
         <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputIssuanceDate">
+          <input type="text" class="form-control" id="inputIssuanceDate" formControlName="issuanceDate">
         </div>
       </div>
       <hr>
@@ -91,7 +116,7 @@
         </div>
         <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputExpirationDate">
+          <input type="text" class="form-control" id="inputExpirationDate" formControlName="expirationDate">
         </div>
       </div>
       <hr>
@@ -102,7 +127,7 @@
         </div>
         <label for="inputNoOfDependents" class="col-sm-4 col-form-label">No Of Dependents</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputNoOfDependents">
+          <input type="text" class="form-control" id="inputNoOfDependents" formControlName="noOfDependents">
         </div>
       </div>
       <hr>
@@ -128,7 +153,7 @@
         <div class="form-group row">
         <label for="inputMaritalStatus" class="col-sm-2 col-form-label">Marital Status</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputMaritalStatus">
+            <select class="form-control" id="inputMaritalStatus" formControlName="maritalStatus">
               <option>Please select...</option>
               <option>Married</option>
               <option>Unmarried</option>
