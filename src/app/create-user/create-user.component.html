@@ -1,7 +1,30 @@
 <div id="createUser">
     <h2>User Creation</h2>
     <hr>
-    <form>
+    <form [formGroup]="userForm">
+      <div class="alert alert-danger" *ngIf="(userForm.controls.firstname.touched || userForm.controls.firstname.dirty) && userForm.controls.firstname.invalid">
+            <div *ngIf="userForm.controls.firstname.errors.required">
+                First name is required.
+            </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.lastname.touched || userForm.controls.lastname.dirty) && userForm.controls.lastname.invalid">
+            <div *ngIf="userForm.controls.lastname.errors.required">
+                Last name is required.
+            </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.shortname.touched || userForm.controls.shortname.dirty) && userForm.controls.shortname.invalid">
+            <div *ngIf="userForm.controls.shortname.errors.required">
+                Short name is required.
+            </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="(userForm.controls.ssn.touched || userForm.controls.ssn.dirty) && userForm.controls.ssn.invalid">
+            <div *ngIf="userForm.controls.ssn.errors.required">
+                SSN is required.
+            </div>
+            <div *ngIf="userForm.controls.ssn.errors.pattern">
+                SSN should have only numeric values(max 9).
+            </div>
+      </div>
       <div class="form-group row">
         <label for="inputPrefix" class="col-sm-2 col-form-label">Prefix</label>
         <div class="col-sm-3">
@@ -26,7 +49,7 @@
       <div class="form-group row">
         <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputFirstName">
+          <input type="text" class="form-control" id="inputFirstName" formControlName="firstname">
         </div>
         <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
         <div class="col-sm-3">
@@ -53,7 +76,7 @@
       <div class="form-group row">
         <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputLastName">
+          <input type="text" class="form-control" id="inputLastName" formControlName="lastname">
         </div>
         <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
         <div class="col-sm-3">
@@ -64,7 +87,7 @@
       <div class="form-group row">
         <label for="inputShortName" class="col-sm-2 col-form-label">Short Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputShortName">
+          <input type="text" class="form-control" id="inputShortName"  formControlName="shortname">
         </div>
         <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
         <div class="col-sm-3">
@@ -75,7 +98,7 @@
       <div class="form-group row">
         <label for="inputSsn" class="col-sm-2 col-form-label">SSN</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputSsn">
+          <input type="text" class="form-control" id="inputSsn" formControlName="ssn">
         </div>
         <label for="inputNoOfDependents" class="col-sm-4 col-form-label">No Of Dependents</label>
         <div class="col-sm-3">
@@ -88,13 +111,13 @@
           <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridGender" id="gridMale" value="male">
+              <input class="form-check-input" type="radio" name="gender" id="gridMale" value="male" formControlName="gender">
               <label class="form-check-label" for="gridMale">
                 Male
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridGender" id="gridFemale" value="female">
+              <input class="form-check-input" type="radio" name="gender" id="gridFemale" value="female" formControlName="gender">
               <label class="form-check-label" for="gridFemale">
                 Female
               </label>
@@ -114,7 +137,7 @@
       </div>
       <div class="form-group row">
         <div class="col-sm-2">
-          <button type="submit" class="btn btn-info" routerLink="/users/new">Create</button>
+          <button type="submit" class="btn btn-info" routerLink="/users/new" [disabled]="!userForm.valid">Create</button>
         </div>
       </div>
     </form>
