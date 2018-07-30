@@ -1,7 +1,7 @@
 <div id="createUser">
     <h2>User Creation</h2>
     <hr>
-    <form [formGroup]="userForm">
+    <form [formGroup]="userForm" (submit)="createUserRecord(userForm.value)">
       <div class="alert alert-danger" *ngIf="(userForm.controls.firstname.touched || userForm.controls.firstname.dirty) && userForm.controls.firstname.invalid">
             <div *ngIf="userForm.controls.firstname.errors.required">
                 First name is required.

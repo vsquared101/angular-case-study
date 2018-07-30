@@ -23,5 +23,9 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  createUserRecord(data) {
+    console.log(data);
+  }
 
 }
