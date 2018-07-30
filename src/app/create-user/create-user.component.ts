@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 export class CreateUserComponent implements OnInit {
   userForm: FormGroup;
   ssnPattern: string = '^[0-9]{9}$';
+  passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
 
   constructor(fb: FormBuilder) {
     this.userForm = fb.group({
@@ -20,14 +21,13 @@ export class CreateUserComponent implements OnInit {
       'ssn': ['', [Validators.required, Validators.pattern(this.ssnPattern)]],
       'gender': ['', Validators.required],
       'countryOfResidence': ['', Validators.required],
-      'passport': ['', Validators.required],
+      'passport': ['', [Validators.required, Validators.pattern(this.passportPattern)]],
       'countryOfIssuance': ['', Validators.required],
       'issuanceDate' : [''],
       'expirationDate' : [''],
       'noOfDependents' : [''],
       'maritalStatus' : ['']
     });
-    
   }
 
   ngOnInit() {
