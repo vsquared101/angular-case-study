@@ -25,7 +25,7 @@ export class ViewUserComponent implements OnInit {
           "id": 1,
           "full_name": "Mr Charles Stewart",
           "short_name": "Charles Stewart",
-          "ssn": "11-22-3333",
+          "ssn": "111222333",
           "dob": "10-10-1968",
           "gender": "Male",
           "marital_status": "Married",
