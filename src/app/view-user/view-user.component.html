@@ -1,3 +1,32 @@
-<p>
-  view-user works!
-</p>
+<div *ngIf="user">
+    <h2>View User Details</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>SSN/TIN</th>
+            <th>Gender</th>
+            <th>Marital Status</th>
+            <th>Country of Residence</th>
+            <th>Passport</th>
+            <th>Expiration Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ user.short_name}}</td>
+            <td>{{ user.country_of_residence }}</td>
+            <td>{{ user.ssn }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.marital_status }}</td>
+            <td>{{ user.country_of_residence }}</td>
+            <td>{{ user.passport }}</td>
+            <td>{{ user.expiration_date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-outline-info btn-xs" routerLink="/">Back to Dashboard</button>
+</div>
