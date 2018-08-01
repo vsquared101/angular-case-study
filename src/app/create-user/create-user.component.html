@@ -47,6 +47,16 @@
             Please select a country of issuance.
         </div>
   </div>
+  <div class="alert alert-danger" *ngIf="(userForm.controls.issuanceDate.touched || userForm.controls.issuanceDate.dirty) && userForm.controls.issuanceDate.invalid">
+        <div *ngIf="userForm.controls.issuanceDate.errors.required || userForm.controls.issuanceDate.errors.pattern">
+            Issuance Date should be provided in the format DD-MM-YYYY.
+        </div>
+      </div>
+  <div class="alert alert-danger" *ngIf="(userForm.controls.expirationDate.touched || userForm.controls.expirationDate.dirty) && userForm.controls.expirationDate.invalid">
+        <div *ngIf="userForm.controls.expirationDate.errors.required || userForm.controls.expirationDate.errors.pattern">
+        Expiration Date should be provided in the format DD-MM-YYYY.
+        </div>
+  </div>
   <div class="alert alert-danger" *ngIf="(userForm.controls.noOfDependents.touched || userForm.controls.noOfDependents.dirty) && userForm.controls.noOfDependents.invalid">
         <div *ngIf="userForm.controls.noOfDependents.errors.required || userForm.controls.noOfDependents.errors.pattern">
             A user can have only 0 or more dependents.

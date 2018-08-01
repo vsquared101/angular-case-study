@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,6 +16,7 @@ export class EditUserComponent implements OnInit {
   userForm: FormGroup;
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
+  dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
 
   constructor(private service: UserService, private route: ActivatedRoute, fb: FormBuilder) { 
   
@@ -29,8 +31,8 @@ export class EditUserComponent implements OnInit {
       'countryOfResidence': ['', Validators.required],
       'passport': ['', [Validators.required, Validators.pattern(this.passportPattern)]],
       'countryOfIssuance': ['', Validators.required],
-      'issuanceDate' : [''],
-      'expirationDate' : [''],
+      'issuanceDate' : ['', Validators.pattern(this.dateFormat)],
+      'expirationDate' : ['', Validators.pattern(this.dateFormat)],
       'noOfDependents' : [''],
       'maritalStatus' : ['']
     });

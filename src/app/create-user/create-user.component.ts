@@ -13,6 +13,7 @@ export class CreateUserComponent implements OnInit {
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
   noOfDependentsPattern: string = '^[0-9]+$';
+  dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
   user: any;
 
   constructor(fb: FormBuilder, private service: UserService) {
@@ -27,8 +28,8 @@ export class CreateUserComponent implements OnInit {
       'countryOfResidence': ['Please select...', [Validators.required, ValidateDropDownDefault]],
       'passport': ['', [Validators.required, Validators.pattern(this.passportPattern)]],
       'countryOfIssuance': ['Please select...', [Validators.required, ValidateDropDownDefault]],
-      'issuanceDate' : [''],
-      'expirationDate' : [''],
+      'issuanceDate' : ['', Validators.pattern(this.dateFormat)],
+      'expirationDate' : ['', Validators.pattern(this.dateFormat)],
       'noOfDependents' : ['', [Validators.required, Validators.pattern(this.noOfDependentsPattern)]],
       'maritalStatus' : ['Please select...', [Validators.required, ValidateDropDownDefault]]
     });
