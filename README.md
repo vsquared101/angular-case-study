@@ -103,7 +103,7 @@ If bootstrap was installed and setup correctly we should see the application hom
 - This should start a local server at http://localhost:3000 with the basic REST HTTP endpoints setup for us.
 - Accessing the endpoints such as GET - /users, /users/1, etc. should give us appropriate JSON response.
 
-## Creating a service to load data exposed by json-server endpoints
+## Creating a service to load data exposed by json-server endpoints(setting up the backend)
 
 - Create a new service using Angular CLI
 
@@ -137,6 +137,14 @@ If bootstrap was installed and setup correctly we should see the application hom
     getUsers() {
       return this.http.get('http://localhost:3000/users');
     }
+    
+    getUserById(id: number) {
+      return this.http.get('http://localhost:3000/users/' + id);
+    }
+    
+    deleteUser(id: number) {
+      return this.http.delete('http://localhost:3000/users/' + id);
+    }
   }
 
 ```
@@ -149,5 +157,77 @@ If bootstrap was installed and setup correctly we should see the application hom
   ...
   ...
   providers: [UserService]
+
+```
+
+- Now our `UserService` is ready to be used within any component associated with the app module.(more on this later)
+
+## Following component-based approach to design the application UI
+
+- With Bootstrap v4 added and the backend setup we can now proceed with designing the UI screens for the application.
+- As with any Single Page Application we have to think in terms of 'components' that will make up the views.
+- For this case study we can create the below mentioned components:
+  - Header
+  - Sidebar
+  - UserList
+  - CreateUser
+  - EditUser
+  - ViewUser
+- Use below commands to create the above components:
+
+  > ng generate component header
+  > ng generate component sidebar
+  > ng generate component user-list
+  > ng generate component create-user
+  > ng generate component view-user
+  > ng generate component edit-user
+
+- To speed up the process of creating the screens we can make use of the Dashboard example available in bootstrap.
+- Go to <https://getbootstrap.com/docs/4.1/examples/dashboard/> to view the Dashboard and get the source code.
+- Of the above components the `Header` and `Sidebar` components will be visible for all the views.
+- The remaining components `UserList`, `CreateUser`, `EditUser` and `ViewUser` will be switched based on the route we navigate to.
+
+## Loading data within the components using the service that was created earlier
+
+- Open user-list.component.ts and add below import for the UserService in it:
+
+```typescript
+
+  import { UserService } from '../user.service';
+  
+```
+
+- Now create a private property for the service by updating the constructor. Also create a property called `users` that we can use later to store the data retrieved.
+
+```typescript
+
+  users: any;
+
+  constructor(private service: UserService) { }
+
+```
+
+- Angular will take care of injecting the service into our component and we can starting making use of the methods available within the service.
+- The call to the service methods to load data may take up some time so it is recommended that we call such methods inside the ngOnInit method.
+
+```typescript
+
+  ngOnInit() {
+    this.service.getUsers()
+      .subscribe((data) => {
+        this.users = data;
+      });
+  }
+
+```
+
+- In the HTML template for our component we can make use of the *ngFor directive and loop through and print the users data by using string interpolation.
+
+```html
+
+  <div *ngFor="let user of users">
+    <h3>{{ user.firstName }}</h3>
+    <h4>{{ user.lastName }}</h3>
+  </div>
 
 ```
