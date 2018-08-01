@@ -2,7 +2,7 @@
 <hr>
 <form [formGroup]="userForm" (submit)="createUserRecord(userForm.value)">
   <div class="alert alert-danger" *ngIf="(userForm.controls.prefix.touched || userForm.controls.prefix.dirty) && userForm.controls.prefix.invalid">
-        <div *ngIf="userForm.controls.prefix.errors.required">
+        <div *ngIf="userForm.controls.prefix.errors.required || userForm.controls.prefix.errors.validDropDown">
             Prefix/salutation is required.
         </div>
   </div>
@@ -26,11 +26,11 @@
             SSN is required.
         </div>
         <div *ngIf="userForm.controls.ssn.errors.pattern">
-            SSN should have only numeric values(max 9).
+            SSN should be a numeric value with 9 digits.
         </div>
   </div>
   <div class="alert alert-danger" *ngIf="(userForm.controls.countryOfResidence.touched || userForm.controls.countryOfResidence.dirty) && userForm.controls.countryOfResidence.invalid">
-        <div *ngIf="userForm.controls.countryOfResidence.errors.required">
+        <div *ngIf="userForm.controls.countryOfResidence.errors.required || userForm.controls.countryOfResidence.errors.validDropDown">
             Please select a country of residence.
         </div>
   </div>
@@ -39,17 +39,22 @@
             Passport is required.
         </div>
         <div *ngIf="userForm.controls.passport.errors.pattern">
-          Passport # should have a single alphabet followed by 7 digits.
+          Passport no. should have a single alphabet followed by 7 digits.
       </div>
   </div>
   <div class="alert alert-danger" *ngIf="(userForm.controls.countryOfIssuance.touched || userForm.controls.countryOfIssuance.dirty) && userForm.controls.countryOfIssuance.invalid">
-        <div *ngIf="userForm.controls.countryOfIssuance.errors.required">
+        <div *ngIf="userForm.controls.countryOfIssuance.errors.required || userForm.controls.countryOfIssuance.errors.validDropDown">
             Please select a country of issuance.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.gender.touched || userForm.controls.gender.dirty) && userForm.controls.gender.invalid">
-        <div *ngIf="userForm.controls.gender.errors.required">
-            Please select a value for gender.
+  <div class="alert alert-danger" *ngIf="(userForm.controls.noOfDependents.touched || userForm.controls.noOfDependents.dirty) && userForm.controls.noOfDependents.invalid">
+        <div *ngIf="userForm.controls.noOfDependents.errors.required || userForm.controls.noOfDependents.errors.pattern">
+            A user can have only 0 or more dependents.
+        </div>
+  </div>
+  <div class="alert alert-danger" *ngIf="(userForm.controls.maritalStatus.touched || userForm.controls.maritalStatus.dirty) && userForm.controls.maritalStatus.invalid">
+        <div *ngIf="userForm.controls.maritalStatus.errors.required || userForm.controls.maritalStatus.errors.validDropDown">
+            Please select a marital status.
         </div>
   </div>
   <div class="form-group row">
@@ -57,9 +62,9 @@
     <div class="col-sm-3">
         <select class="form-control" id="inputPrefix" formControlName="prefix">
           <option>Please select...</option>
-          <option>Mr</option>
-          <option>Ms</option>
-          <option>Mrs</option>
+          <option>Mr.</option>
+          <option>Ms.</option>
+          <option>Mrs.</option>
         </select>
     </div>
     <label for="inputResidencyCountry" class="col-sm-4 col-form-label">Country of Residence</label>
@@ -138,13 +143,13 @@
       <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
       <div class="col-sm-10">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender" id="gridMale" value="male" formControlName="gender">
+          <input class="form-check-input" type="radio" id="gridMale" value="male" formControlName="gender" [checked]="true">
           <label class="form-check-label" for="gridMale">
             Male
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender" id="gridFemale" value="female" formControlName="gender">
+          <input class="form-check-input" type="radio" id="gridFemale" value="female" formControlName="gender">
           <label class="form-check-label" for="gridFemale">
             Female
           </label>
@@ -164,7 +169,13 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <button type="submit" class="btn btn-info" routerLink="/users/new" [disabled]="!userForm.valid">Create</button>
+      <button type="submit" class="btn btn-outline-info" routerLink="/users/new" [disabled]="!userForm.valid">Create</button>
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-outline-secondary" (click)="resetForm()">Reset</button>
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-outline-dark" routerLink="/">Cancel</button>
     </div>
   </div>
 </form>

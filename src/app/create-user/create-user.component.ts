@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { ValidateDropDownDefault } from '../validators/dropdown.default.validator';
+import { UserService  } from '../user.service';
 
 @Component({
   selector: 'app-create-user',
@@ -10,23 +12,25 @@ export class CreateUserComponent implements OnInit {
   userForm: FormGroup;
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
+  noOfDependentsPattern: string = '^[0-9]+$';
+  user: any;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private service: UserService) {
     this.userForm = fb.group({
-      'prefix': ['', Validators.required],
+      'prefix': ['Please select...', [Validators.required, ValidateDropDownDefault]],
       'firstname': ['', Validators.required],
       'middlename': [''],
       'lastname': ['', Validators.required],
       'shortname': ['', Validators.required],
       'ssn': ['', [Validators.required, Validators.pattern(this.ssnPattern)]],
       'gender': ['', Validators.required],
-      'countryOfResidence': ['', Validators.required],
+      'countryOfResidence': ['Please select...', [Validators.required, ValidateDropDownDefault]],
       'passport': ['', [Validators.required, Validators.pattern(this.passportPattern)]],
-      'countryOfIssuance': ['', Validators.required],
+      'countryOfIssuance': ['Please select...', [Validators.required, ValidateDropDownDefault]],
       'issuanceDate' : [''],
       'expirationDate' : [''],
-      'noOfDependents' : [''],
-      'maritalStatus' : ['']
+      'noOfDependents' : ['', [Validators.required, Validators.pattern(this.noOfDependentsPattern)]],
+      'maritalStatus' : ['Please select...', [Validators.required, ValidateDropDownDefault]]
     });
   }
 
@@ -34,7 +38,30 @@ export class CreateUserComponent implements OnInit {
   }
   
   createUserRecord(data) {
-    console.log(data);
+    
+	 //  this.isValidFormSubmitted = false;
+	 //  if(this.userForm.invalid){
+		// return;	
+	 //  } 	
+	   //this.isValidFormSubmitted = true;	
+	   console.log('Is userform valid: ' + this.userForm.valid);
+	   console.log(data);
+	   this.user = data;
+	   
+	   this.service.createUser(this.user);	 
+	   //this.reset();
+	}
+  
+  resetForm(){
+    // Resets to blank object
+    this.userForm.reset(
+      { 
+        prefix: 'Please select...', 
+        countryOfResidence: 'Please select...', 
+        countryOfIssuance: 'Please select...', 
+        maritalStatus: 'Please select...' 
+      }
+    );
   }
 
 }

@@ -14,7 +14,7 @@
         </div>
         <label for="inputResidencyCountry" class="col-sm-4 col-form-label">Country of Residence</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputResidencyCountry" formControlName="countryOfResidence" [value]="user.country_of_residence">
+            <select class="form-control" id="inputResidencyCountry" formControlName="countryOfResidence" [value]="user.countryOfResidence">
               <option>Please select...</option>
               <option>Australia</option>
               <option>India</option>
@@ -26,7 +26,7 @@
       <div class="form-group row">
         <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputFirstName" formControlName="firstname" [value]="user.first_name">
+          <input type="text" class="form-control" id="inputFirstName" formControlName="firstname" [value]="user.firstName">
         </div>
         <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
         <div class="col-sm-3">
@@ -37,11 +37,11 @@
       <div class="form-group row">
         <label for="inputMiddleName" class="col-sm-2 col-form-label">Middle Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename" [value]="user.middle_name">
+          <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename" [value]="user.middleName">
         </div>
         <label for="inputIssuanceCountry" class="col-sm-4 col-form-label">Country of Issuance</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputIssuanceCountry" formControlName="countryOfIssuance" [value]="user.country_of_issuance">
+            <select class="form-control" id="inputIssuanceCountry" formControlName="countryOfIssuance" [value]="user.countryOfIssuance">
               <option>Please select...</option>
               <option>Australia</option>
               <option>India</option>
@@ -53,22 +53,22 @@
       <div class="form-group row">
         <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputLastName" formControlName="lastname" [value]="user.last_name">
+          <input type="text" class="form-control" id="inputLastName" formControlName="lastname" [value]="user.lastName">
         </div>
         <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputIssuanceDate" formControlName="issuanceDate" [value]="user.issuance_date">
+          <input type="text" class="form-control" id="inputIssuanceDate" formControlName="issuanceDate" [value]="user.issuanceDate">
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <label for="inputShortName" class="col-sm-2 col-form-label">Short Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputShortName"  formControlName="shortname" [value]="user.short_name">
+          <input type="text" class="form-control" id="inputShortName"  formControlName="shortname" [value]="user.shortName">
         </div>
         <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputExpirationDate" formControlName="expirationDate" [value]="user.expiration_date">
+          <input type="text" class="form-control" id="inputExpirationDate" formControlName="expirationDate" [value]="user.expirationDate">
         </div>
       </div>
       <hr>
@@ -79,7 +79,7 @@
         </div>
         <label for="inputNoOfDependents" class="col-sm-4 col-form-label">No Of Dependents</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputNoOfDependents" formControlName="noOfDependents" [value]="user.no_of_dependents">
+          <input type="text" class="form-control" id="inputNoOfDependents" formControlName="noOfDependents" [value]="user.noOfDependents">
         </div>
       </div>
       <hr>
@@ -88,13 +88,13 @@
           <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="gridMale" value="M" formControlName="gender" [checked]="user.gender == 'Male'">
+              <input class="form-check-input" type="radio" id="gridMale" value="Male" formControlName="gender" [checked]="user.gender == 'Male'">
               <label class="form-check-label" for="gridMale">
                 Male
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="gridFemale" value="M" formControlName="gender" [checked]="user.gender == 'Female'">
+              <input class="form-check-input" type="radio" id="gridFemale" value="Female" formControlName="gender" [checked]="user.gender == 'Female'">
               <label class="form-check-label" for="gridFemale">
                 Female
               </label>
@@ -105,7 +105,7 @@
         <div class="form-group row">
         <label for="inputMaritalStatus" class="col-sm-2 col-form-label">Marital Status</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputMaritalStatus" formControlName="maritalStatus" [value]="user.marital_status">
+            <select class="form-control" id="inputMaritalStatus" formControlName="maritalStatus" [value]="user.maritalStatus">
               <option>Please select...</option>
               <option>Married</option>
               <option>Unmarried</option>
