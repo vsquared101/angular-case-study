@@ -19,4 +19,8 @@ export class UserService {
   deleteUser(id: number) {
     return this.http.delete('http://localhost:3000/users/' + id);
   }
+
+  createUser(data){
+    console.log(data);
+  }
 }

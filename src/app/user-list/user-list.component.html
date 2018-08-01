@@ -13,8 +13,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <td>{{ user.short_name}}</td>
-        <td>{{ user.country_of_residence }}</td>
+        <td>{{ user.shortName}}</td>
+        <td>{{ user.countryOfResidence }}</td>
         <td>{{ user.ssn }}</td>
         <td><button [routerLink]="['/users', user.id, 'view']" class="btn btn-outline-dark btn-sm">View</button></td>
         <td><button [routerLink]="['/users', user.id, 'edit']" class="btn btn-outline-info btn-sm">Edit</button></td>
