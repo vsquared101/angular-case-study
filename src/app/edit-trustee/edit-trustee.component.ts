@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router';
-import { UserService } from '../user.service';
+import { TrusteeService } from '../trustee.service';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import {DatePipe} from '@angular/common';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  selector: 'app-edit-trustee',
+  templateUrl: './edit-trustee.component.html',
+  styleUrls: ['./edit-trustee.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class EditTrusteeComponent implements OnInit {
 
   id: number;
-  user: any;
-  userForm: FormGroup;
+  trustee: any;
+  trusteeForm: FormGroup;
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
   dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
 
-  constructor(private service: UserService, private route: ActivatedRoute, fb: FormBuilder) { 
+  constructor(private service: TrusteeService, private route: ActivatedRoute, fb: FormBuilder) { 
   
-    this.userForm = fb.group({
+    this.trusteeForm = fb.group({
       'prefix': ['', Validators.required],
       'firstname': ['', Validators.required],
       'middlename': [''],
@@ -43,14 +43,14 @@ export class EditUserComponent implements OnInit {
       this.id = +params['id'];
       //console.log('id value passed is: ' + this.id);
       
-      this.service.getUserById(this.id)
+      this.service.getTrusteeById(this.id)
         .subscribe((data) => {
-          this.user = data;
+          this.trustee = data;
         });
     });
   }
   
-  updateUserRecord(data) {
+  updateTrusteeRecord(data) {
     console.log(data);
   }
 

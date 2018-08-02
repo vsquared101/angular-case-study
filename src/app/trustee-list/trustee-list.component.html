@@ -1,0 +1,27 @@
+<h2 class="dbrd-lbl">Dashboard</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Country</th>
+        <th>SSN/TIN</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trustee of trustees">
+        <td>{{ trustee.shortName}}</td>
+        <td>{{ trustee.countryOfResidence }}</td>
+        <td>{{ trustee.ssn }}</td>
+        <td><button [routerLink]="['/trustees', trustee.id, 'view']" class="btn btn-outline-dark btn-sm">View</button></td>
+        <td><button [routerLink]="['/trustees', trustee.id, 'edit']" class="btn btn-outline-info btn-sm">Edit</button></td>
+        <td><button class="btn btn-outline-danger btn-sm" (click)="deleteTrustee(trustee.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button class="btn btn-outline-info btn-xs" routerLink="/trustees/new">Create New Trustee</button>
+

@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { ValidateDropDownDefault } from '../validators/dropdown.default.validator';
-import { UserService  } from '../user.service';
+import { TrusteeService  } from '../trustee.service';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  selector: 'app-create-trustee',
+  templateUrl: './create-trustee.component.html',
+  styleUrls: ['./create-trustee.component.css']
 })
-export class CreateUserComponent implements OnInit {
-  userForm: FormGroup;
+export class CreateTrusteeComponent implements OnInit {
+  trusteeForm: FormGroup;
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
   noOfDependentsPattern: string = '^[0-9]+$';
   dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
-  user: any;
+  trustee: any;
 
-  constructor(fb: FormBuilder, private service: UserService) {
-    this.userForm = fb.group({
+  constructor(fb: FormBuilder, private service: TrusteeService) {
+    this.trusteeForm = fb.group({
       'prefix': ['Please select...', [Validators.required, ValidateDropDownDefault]],
       'firstname': ['', Validators.required],
       'middlename': [''],
@@ -38,24 +38,18 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
   }
   
-  createUserRecord(data) {
-    
-	 //  this.isValidFormSubmitted = false;
-	 //  if(this.userForm.invalid){
-		// return;	
-	 //  } 	
-	   //this.isValidFormSubmitted = true;	
-	   console.log('Is userform valid: ' + this.userForm.valid);
+  createTrustee(data) {	
+	   console.log('Is trusteeform valid: ' + this.trusteeForm.valid);
 	   console.log(data);
-	   this.user = data;
+	   this.trustee = data;
 	   
-	   this.service.createUser(this.user);	 
-	   //this.reset();
+     this.service.createTrustee(this.trustee)
+      .subscribe((response) => console.log(response));	 
 	}
   
   resetForm(){
     // Resets to blank object
-    this.userForm.reset(
+    this.trusteeForm.reset(
       { 
         prefix: 'Please select...', 
         countryOfResidence: 'Please select...', 

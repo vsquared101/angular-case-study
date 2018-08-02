@@ -5,11 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { UserService } from './user.service';
-import { ViewUserComponent } from './view-user/view-user.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { CreateUserComponent } from './create-user/create-user.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { TrusteeService } from './trustee.service';
+import { ViewTrusteeComponent } from './view-trustee/view-trustee.component';
+import { EditTrusteeComponent } from './edit-trustee/edit-trustee.component';
+import { CreateTrusteeComponent } from './create-trustee/create-trustee.component';
+import { TrusteeListComponent } from './trustee-list/trustee-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -18,33 +18,33 @@ import { SsnFormatPipe } from './ssn-format.pipe';
 const appRoutes: Routes = [
   {
     path: '',
-    component: UserListComponent
+    component: TrusteeListComponent
   },
   {
-    path: 'users/:id/view',
-    component: ViewUserComponent
+    path: 'trustees/:id/view',
+    component: ViewTrusteeComponent
   },
   {
-    path: 'users/:id/edit',
-    component: EditUserComponent
+    path: 'trustees/:id/edit',
+    component: EditTrusteeComponent
   },
   {
-    path: 'users/new',
-    component: CreateUserComponent
+    path: 'trustees/new',
+    component: CreateTrusteeComponent
   },
   {
     path: '**',
-    component: UserListComponent
+    component: TrusteeListComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewUserComponent,
-    EditUserComponent,
-    CreateUserComponent,
-    UserListComponent,
+    ViewTrusteeComponent,
+    EditTrusteeComponent,
+    CreateTrusteeComponent,
+    TrusteeListComponent,
     SidebarComponent,
     HeaderComponent,
     HomeComponent,
@@ -57,7 +57,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService],
+  providers: [TrusteeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewUserComponent } from './view-user.component';
+import { ViewTrusteeComponent } from './view-trustee.component';
 
-describe('ViewUserComponent', () => {
-  let component: ViewUserComponent;
-  let fixture: ComponentFixture<ViewUserComponent>;
+describe('ViewTrusteeComponent', () => {
+  let component: ViewTrusteeComponent;
+  let fixture: ComponentFixture<ViewTrusteeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewUserComponent ]
+      declarations: [ ViewTrusteeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewUserComponent);
+    fixture = TestBed.createComponent(ViewTrusteeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

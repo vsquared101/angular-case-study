@@ -1,21 +1,21 @@
-<div *ngIf="user">
-    <h2>Update User</h2>
+<div *ngIf="trustee">
+    <h2>Update Trustee</h2>
     <hr>
-    <form [formGroup]="userForm" (submit)="updateUserRecord(userForm.value)">
-      <div class="alert alert-danger" *ngIf="(userForm.controls.issuanceDate.touched || userForm.controls.issuanceDate.dirty) && userForm.controls.issuanceDate.invalid">
-        <div *ngIf="userForm.controls.issuanceDate.errors.required || userForm.controls.issuanceDate.errors.pattern">
+    <form [formGroup]="trusteeForm" (submit)="updateTrusteeRecord(trusteeForm.value)">
+      <div class="alert alert-danger" *ngIf="(trusteeForm.controls.issuanceDate.touched || trusteeForm.controls.issuanceDate.dirty) && trusteeForm.controls.issuanceDate.invalid">
+        <div *ngIf="trusteeForm.controls.issuanceDate.errors.required || trusteeForm.controls.issuanceDate.errors.pattern">
             Issuance Date should be provided in the format DD-MM-YYYY.
         </div>
       </div>
-      <div class="alert alert-danger" *ngIf="(userForm.controls.expirationDate.touched || userForm.controls.expirationDate.dirty) && userForm.controls.expirationDate.invalid">
-        <div *ngIf="userForm.controls.expirationDate.errors.required || userForm.controls.expirationDate.errors.pattern">
+      <div class="alert alert-danger" *ngIf="(trusteeForm.controls.expirationDate.touched || trusteeForm.controls.expirationDate.dirty) && trusteeForm.controls.expirationDate.invalid">
+        <div *ngIf="trusteeForm.controls.expirationDate.errors.required || trusteeForm.controls.expirationDate.errors.pattern">
             Expiration Date should be provided in the format DD-MM-YYYY.
         </div>
       </div>
       <div class="form-group row">
         <label for="inputPrefix" class="col-sm-2 col-form-label">Prefix</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputPrefix" formControlName="prefix" [value]="user.prefix">
+            <select class="form-control" id="inputPrefix" formControlName="prefix" [value]="trustee.prefix">
               <option>Please select...</option>
               <option>Mr.</option>
               <option>Ms.</option>
@@ -24,7 +24,7 @@
         </div>
         <label for="inputResidencyCountry" class="col-sm-4 col-form-label">Country of Residence</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputResidencyCountry" formControlName="countryOfResidence" [value]="user.countryOfResidence">
+            <select class="form-control" id="inputResidencyCountry" formControlName="countryOfResidence" [value]="trustee.countryOfResidence">
               <option>Please select...</option>
               <option>Australia</option>
               <option>India</option>
@@ -36,22 +36,22 @@
       <div class="form-group row">
         <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputFirstName" formControlName="firstname" [value]="user.firstName">
+          <input type="text" class="form-control" id="inputFirstName" formControlName="firstname" [value]="trustee.firstName">
         </div>
         <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputPassport" formControlName="passport" [value]="user.passport">
+          <input type="text" class="form-control" id="inputPassport" formControlName="passport" [value]="trustee.passport">
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <label for="inputMiddleName" class="col-sm-2 col-form-label">Middle Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename" [value]="user.middleName">
+          <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename" [value]="trustee.middleName">
         </div>
         <label for="inputIssuanceCountry" class="col-sm-4 col-form-label">Country of Issuance</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputIssuanceCountry" formControlName="countryOfIssuance" [value]="user.countryOfIssuance">
+            <select class="form-control" id="inputIssuanceCountry" formControlName="countryOfIssuance" [value]="trustee.countryOfIssuance">
               <option>Please select...</option>
               <option>Australia</option>
               <option>India</option>
@@ -63,33 +63,33 @@
       <div class="form-group row">
         <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputLastName" formControlName="lastname" [value]="user.lastName">
+          <input type="text" class="form-control" id="inputLastName" formControlName="lastname" [value]="trustee.lastName">
         </div>
         <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputIssuanceDate" formControlName="issuanceDate" [value]="user.issuanceDate">
+          <input type="text" class="form-control" id="inputIssuanceDate" formControlName="issuanceDate" [value]="trustee.issuanceDate">
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <label for="inputShortName" class="col-sm-2 col-form-label">Short Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputShortName"  formControlName="shortname" [value]="user.shortName">
+          <input type="text" class="form-control" id="inputShortName"  formControlName="shortname" [value]="trustee.shortName">
         </div>
         <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputExpirationDate" formControlName="expirationDate" [value]="user.expirationDate">
+          <input type="text" class="form-control" id="inputExpirationDate" formControlName="expirationDate" [value]="trustee.expirationDate">
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <label for="inputSsn" class="col-sm-2 col-form-label">SSN</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputSsn" formControlName="ssn" [value]="user.ssn">
+          <input type="text" class="form-control" id="inputSsn" formControlName="ssn" [value]="trustee.ssn">
         </div>
         <label for="inputNoOfDependents" class="col-sm-4 col-form-label">No Of Dependents</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputNoOfDependents" formControlName="noOfDependents" [value]="user.noOfDependents">
+          <input type="text" class="form-control" id="inputNoOfDependents" formControlName="noOfDependents" [value]="trustee.noOfDependents">
         </div>
       </div>
       <hr>
@@ -98,13 +98,13 @@
           <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" id="gridMale" value="Male" formControlName="gender" [checked]="user.gender == 'Male'">
+              <input class="form-check-input" type="radio" id="gridMale" value="Male" formControlName="gender" [checked]="trustee.gender == 'Male'">
               <label class="form-check-label" for="gridMale">
                 Male
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" id="gridFemale" value="Female" formControlName="gender" [checked]="user.gender == 'Female'">
+              <input class="form-check-input" type="radio" id="gridFemale" value="Female" formControlName="gender" [checked]="trustee.gender == 'Female'">
               <label class="form-check-label" for="gridFemale">
                 Female
               </label>
@@ -115,7 +115,7 @@
         <div class="form-group row">
         <label for="inputMaritalStatus" class="col-sm-2 col-form-label">Marital Status</label>
         <div class="col-sm-3">
-            <select class="form-control" id="inputMaritalStatus" formControlName="maritalStatus" [value]="user.maritalStatus">
+            <select class="form-control" id="inputMaritalStatus" formControlName="maritalStatus" [value]="trustee.maritalStatus">
               <option>Please select...</option>
               <option>Married</option>
               <option>Unmarried</option>
@@ -124,7 +124,7 @@
       </div>
       <div class="form-group row">
         <div class="col-sm-2">
-          <button type="submit" class="btn btn-outline-info" [routerLink]="['/users', user.id, 'edit']"  [disabled]="!userForm.valid">Update</button>
+          <button type="submit" class="btn btn-outline-info" [routerLink]="['/trustees', trustee.id, 'edit']"  [disabled]="!trusteeForm.valid">Update</button>
         </div>
         <div class="col-sm-2">
           <button type="button" class="btn btn-outline-dark" routerLink="/">Cancel</button>

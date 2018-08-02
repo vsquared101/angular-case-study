@@ -1,5 +1,5 @@
-<div *ngIf="user">
-    <h2>View User Details</h2>
+<div *ngIf="trustee">
+    <h2>View Trustee Details</h2>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -16,14 +16,14 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{ user.shortName}}</td>
-            <td>{{ user.countryOfResidence }}</td>
-            <td>{{ user.ssn }}</td>
-            <td>{{ user.gender }}</td>
-            <td>{{ user.maritalStatus }}</td>
-            <td>{{ user.countryOfResidence }}</td>
-            <td>{{ user.passport }}</td>
-            <td>{{ user.expirationDate }}</td>
+            <td>{{ trustee.shortName}}</td>
+            <td>{{ trustee.countryOfResidence }}</td>
+            <td>{{ trustee.ssn }}</td>
+            <td>{{ trustee.gender }}</td>
+            <td>{{ trustee.maritalStatus }}</td>
+            <td>{{ trustee.countryOfResidence }}</td>
+            <td>{{ trustee.passport }}</td>
+            <td>{{ trustee.expirationDate }}</td>
           </tr>
         </tbody>
       </table>

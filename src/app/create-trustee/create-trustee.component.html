@@ -1,69 +1,69 @@
-<h2>User Creation</h2>
+<h2>Trustee Creation</h2>
 <hr>
-<form [formGroup]="userForm" (submit)="createUserRecord(userForm.value)">
-  <div class="alert alert-danger" *ngIf="(userForm.controls.prefix.touched || userForm.controls.prefix.dirty) && userForm.controls.prefix.invalid">
-        <div *ngIf="userForm.controls.prefix.errors.required || userForm.controls.prefix.errors.validDropDown">
+<form [formGroup]="trusteeForm" (submit)="createTrustee(trusteeForm.value)">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.prefix.touched || trusteeForm.controls.prefix.dirty) && trusteeForm.controls.prefix.invalid">
+        <div *ngIf="trusteeForm.controls.prefix.errors.required || trusteeForm.controls.prefix.errors.validDropDown">
             Prefix/salutation is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.firstname.touched || userForm.controls.firstname.dirty) && userForm.controls.firstname.invalid">
-        <div *ngIf="userForm.controls.firstname.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.firstname.touched || trusteeForm.controls.firstname.dirty) && trusteeForm.controls.firstname.invalid">
+        <div *ngIf="trusteeForm.controls.firstname.errors.required">
             First name is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.lastname.touched || userForm.controls.lastname.dirty) && userForm.controls.lastname.invalid">
-        <div *ngIf="userForm.controls.lastname.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.lastname.touched || trusteeForm.controls.lastname.dirty) && trusteeForm.controls.lastname.invalid">
+        <div *ngIf="trusteeForm.controls.lastname.errors.required">
             Last name is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.shortname.touched || userForm.controls.shortname.dirty) && userForm.controls.shortname.invalid">
-        <div *ngIf="userForm.controls.shortname.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.shortname.touched || trusteeForm.controls.shortname.dirty) && trusteeForm.controls.shortname.invalid">
+        <div *ngIf="trusteeForm.controls.shortname.errors.required">
             Short name is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.ssn.touched || userForm.controls.ssn.dirty) && userForm.controls.ssn.invalid">
-        <div *ngIf="userForm.controls.ssn.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.ssn.touched || trusteeForm.controls.ssn.dirty) && trusteeForm.controls.ssn.invalid">
+        <div *ngIf="trusteeForm.controls.ssn.errors.required">
             SSN is required.
         </div>
-        <div *ngIf="userForm.controls.ssn.errors.pattern">
+        <div *ngIf="trusteeForm.controls.ssn.errors.pattern">
             SSN should be a numeric value with 9 digits.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.countryOfResidence.touched || userForm.controls.countryOfResidence.dirty) && userForm.controls.countryOfResidence.invalid">
-        <div *ngIf="userForm.controls.countryOfResidence.errors.required || userForm.controls.countryOfResidence.errors.validDropDown">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.countryOfResidence.touched || trusteeForm.controls.countryOfResidence.dirty) && trusteeForm.controls.countryOfResidence.invalid">
+        <div *ngIf="trusteeForm.controls.countryOfResidence.errors.required || trusteeForm.controls.countryOfResidence.errors.validDropDown">
             Please select a country of residence.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.passport.touched || userForm.controls.passport.dirty) && userForm.controls.passport.invalid">
-        <div *ngIf="userForm.controls.passport.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.passport.touched || trusteeForm.controls.passport.dirty) && trusteeForm.controls.passport.invalid">
+        <div *ngIf="trusteeForm.controls.passport.errors.required">
             Passport is required.
         </div>
-        <div *ngIf="userForm.controls.passport.errors.pattern">
+        <div *ngIf="trusteeForm.controls.passport.errors.pattern">
           Passport no. should have a single alphabet followed by 7 digits.
       </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.countryOfIssuance.touched || userForm.controls.countryOfIssuance.dirty) && userForm.controls.countryOfIssuance.invalid">
-        <div *ngIf="userForm.controls.countryOfIssuance.errors.required || userForm.controls.countryOfIssuance.errors.validDropDown">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.countryOfIssuance.touched || trusteeForm.controls.countryOfIssuance.dirty) && trusteeForm.controls.countryOfIssuance.invalid">
+        <div *ngIf="trusteeForm.controls.countryOfIssuance.errors.required || trusteeForm.controls.countryOfIssuance.errors.validDropDown">
             Please select a country of issuance.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.issuanceDate.touched || userForm.controls.issuanceDate.dirty) && userForm.controls.issuanceDate.invalid">
-        <div *ngIf="userForm.controls.issuanceDate.errors.required || userForm.controls.issuanceDate.errors.pattern">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.issuanceDate.touched || trusteeForm.controls.issuanceDate.dirty) && trusteeForm.controls.issuanceDate.invalid">
+        <div *ngIf="trusteeForm.controls.issuanceDate.errors.required || trusteeForm.controls.issuanceDate.errors.pattern">
             Issuance Date should be provided in the format DD-MM-YYYY.
         </div>
       </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.expirationDate.touched || userForm.controls.expirationDate.dirty) && userForm.controls.expirationDate.invalid">
-        <div *ngIf="userForm.controls.expirationDate.errors.required || userForm.controls.expirationDate.errors.pattern">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.expirationDate.touched || trusteeForm.controls.expirationDate.dirty) && trusteeForm.controls.expirationDate.invalid">
+        <div *ngIf="trusteeForm.controls.expirationDate.errors.required || trusteeForm.controls.expirationDate.errors.pattern">
         Expiration Date should be provided in the format DD-MM-YYYY.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.noOfDependents.touched || userForm.controls.noOfDependents.dirty) && userForm.controls.noOfDependents.invalid">
-        <div *ngIf="userForm.controls.noOfDependents.errors.required || userForm.controls.noOfDependents.errors.pattern">
-            A user can have only 0 or more dependents.
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.noOfDependents.touched || trusteeForm.controls.noOfDependents.dirty) && trusteeForm.controls.noOfDependents.invalid">
+        <div *ngIf="trusteeForm.controls.noOfDependents.errors.required || trusteeForm.controls.noOfDependents.errors.pattern">
+            A trustee can have only 0 or more dependents.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(userForm.controls.maritalStatus.touched || userForm.controls.maritalStatus.dirty) && userForm.controls.maritalStatus.invalid">
-        <div *ngIf="userForm.controls.maritalStatus.errors.required || userForm.controls.maritalStatus.errors.validDropDown">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.maritalStatus.touched || trusteeForm.controls.maritalStatus.dirty) && trusteeForm.controls.maritalStatus.invalid">
+        <div *ngIf="trusteeForm.controls.maritalStatus.errors.required || trusteeForm.controls.maritalStatus.errors.validDropDown">
             Please select a marital status.
         </div>
   </div>
@@ -179,7 +179,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <button type="submit" class="btn btn-outline-info" routerLink="/users/new" [disabled]="!userForm.valid">Create</button>
+      <button type="submit" class="btn btn-outline-info" routerLink="/trustees/new" [disabled]="!trusteeForm.valid">Create</button>
     </div>
     <div class="col-sm-2">
       <button type="button" class="btn btn-outline-secondary" (click)="resetForm()">Reset</button>

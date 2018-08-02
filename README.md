@@ -43,7 +43,7 @@ If bootstrap was installed and setup correctly we should see the application hom
 
 ```javascript
     {
-      "users": [
+      "trustees": [
         {
           "id": 1,
           "prefix": "Mr.",
@@ -105,7 +105,7 @@ If bootstrap was installed and setup correctly we should see the application hom
     }
 ```
 
-- Now run the below command that allows us to use the db.json file as our data store to save/retrieve user data:
+- Now run the below command that allows us to use the db.json file as our data store to save/retrieve trustee data:
   - On local machine
     
     > json-server --watch src/db.json
@@ -116,13 +116,13 @@ If bootstrap was installed and setup correctly we should see the application hom
     
 - This should start a local server at http://localhost:3000(https://workspacename-username.c9user.io:8081 for cloud9) with the basic REST HTTP endpoints setup for us.
 
-- Accessing the endpoints such as GET - /users, /users/1, etc. should give us appropriate JSON response.
+- Accessing the endpoints such as GET - /trustees, /trustees/1, etc. should give us appropriate JSON response.
 
 ## Creating a service to load data exposed by json-server endpoints(setting up the backend)
 
 - Create a new service using Angular CLI
 
-  > ng generate service user
+  > ng generate service trustee
 
 - Before we use the above service we need to first import the HttpClientModule in app.module.ts
 
@@ -135,7 +135,7 @@ If bootstrap was installed and setup correctly we should see the application hom
     ]
   ...
 ```
-- Now open the user.service.ts file and use DI to inject and use the HttpClient to make REST API calls:
+- Now open the trustee.service.ts file and use DI to inject and use the HttpClient to make REST API calls:
 
 ```typescript
 
@@ -145,20 +145,20 @@ If bootstrap was installed and setup correctly we should see the application hom
   @Injectable({
     providedIn: 'root'
   })
-  export class UserService {
+  export class TrusteeService {
 
     constructor(private http: HttpClient) { }
 
-    getUsers() {
-      return this.http.get('http://localhost:3000/users');
+    getTrustees() {
+      return this.http.get('http://localhost:3000/trustees');
     }
     
-    getUserById(id: number) {
-      return this.http.get('http://localhost:3000/users/' + id);
+    getTrusteeById(id: number) {
+      return this.http.get('http://localhost:3000/trustees/' + id);
     }
     
-    deleteUser(id: number) {
-      return this.http.delete('http://localhost:3000/users/' + id);
+    deleteTrustee(id: number) {
+      return this.http.delete('http://localhost:3000/trustees/' + id);
     }
   }
 
@@ -168,14 +168,14 @@ If bootstrap was installed and setup correctly we should see the application hom
 
 ```typescript
 
-  import { UserService } from './user.service';
+  import { TrusteeService } from './trustee.service';
   ...
   ...
-  providers: [UserService]
+  providers: [TrusteeService]
 
 ```
 
-- Now our `UserService` is ready to be used within any component associated with the app module.(more on this later)
+- Now our `TrusteeService` is ready to be used within any component associated with the app module.(more on this later)
 
 ## Following component-based approach to design the application UI
 
@@ -184,41 +184,41 @@ If bootstrap was installed and setup correctly we should see the application hom
 - For this case study we can create the below mentioned components:
   - Header
   - Sidebar
-  - UserList
-  - CreateUser
-  - EditUser
-  - ViewUser
+  - TrusteeList
+  - CreateTrustee
+  - EditTrustee
+  - ViewTrustee
 - Use below commands to create the above components:
 
   > ng generate component header
   > ng generate component sidebar
-  > ng generate component user-list
-  > ng generate component create-user
-  > ng generate component view-user
-  > ng generate component edit-user
+  > ng generate component trustee-list
+  > ng generate component create-trustee
+  > ng generate component view-trustee
+  > ng generate component edit-trustee
 
 - To speed up the process of creating the screens we can make use of the Dashboard example available in bootstrap.
 - Go to <https://getbootstrap.com/docs/4.1/examples/dashboard/> to view the Dashboard and get the source code.
 - Of the above components the `Header` and `Sidebar` components will be visible for all the views.
-- The remaining components `UserList`, `CreateUser`, `EditUser` and `ViewUser` will be switched based on the route we navigate to.
+- The remaining components `TrusteeList`, `CreateTrustee`, `EditTrustee` and `ViewTrustee` will be switched based on the route we navigate to.
 
 ## Loading data within the components using the service that was created earlier
 
-- Open user-list.component.ts and add below import for the UserService in it:
+- Open trustee-list.component.ts and add below import for the TrusteeService in it:
 
 ```typescript
 
-  import { UserService } from '../user.service';
+  import { TrusteeService } from '../trustee.service';
   
 ```
 
-- Now create a private property for the service by updating the constructor. Also create a property called `users` that we can use later to store the data retrieved.
+- Now create a private property for the service by updating the constructor. Also create a property called `trustees` that we can use later to store the data retrieved.
 
 ```typescript
 
-  users: any;
+  trustees: any;
 
-  constructor(private service: UserService) { }
+  constructor(private service: TrusteeService) { }
 
 ```
 
@@ -228,21 +228,21 @@ If bootstrap was installed and setup correctly we should see the application hom
 ```typescript
 
   ngOnInit() {
-    this.service.getUsers()
+    this.service.getTrustees()
       .subscribe((data) => {
-        this.users = data;
+        this.trustees = data;
       });
   }
 
 ```
 
-- In the HTML template for our component we can make use of the *ngFor directive and loop through and print the users data by using string interpolation.
+- In the HTML template for our component we can make use of the *ngFor directive and loop through and print the trustees data by using string interpolation.
 
 ```html
 
-  <div *ngFor="let user of users">
-    <h3>{{ user.firstName }}</h3>
-    <h4>{{ user.lastName }}</h3>
+  <div *ngFor="let trustee of trustees">
+    <h3>{{ trustee.firstName }}</h3>
+    <h4>{{ trustee.lastName }}</h3>
   </div>
 
 ```
