@@ -1,6 +1,6 @@
 # A case-study in Angular
 
-A case study in Angular(version 4+) which involves creation of a "Trustee management" app. 
+A case study in Angular(version 4+) which involves creation of a test application. 
 No back-end will be created for this application as a lightweight NPM package called json-server will be used instead.
 Data that is to be stored/retrieved will be handled by using a db.json file which will act as a substitute for a database(for e.g. MongoDB).
 The json-server package mentioned above will provide us with the common REST endpoints that allow us to perform CRUD operations on the data using the Angular app.
@@ -26,7 +26,7 @@ The json-server package mentioned above will provide us with the common REST end
 
 ```css
 
-@import '~bootstrap/dist/css/bootstrap.min.css';
+    @import '~bootstrap/dist/css/bootstrap.min.css';
 
 ```
 
@@ -46,51 +46,60 @@ If bootstrap was installed and setup correctly we should see the application hom
       "users": [
         {
           "id": 1,
-          "full_name": "Mr Charles Stewart",
-          "short_name": "Charles Stewart",
-          "ssn": "11-22-3333",
+          "prefix": "Mr.",
+          "firstName": "Charles",
+          "middleName": "Edwards",
+          "lastName": "Stewart",
+          "shortName": "Charles Stewart",
+          "ssn": "111222333",
           "dob": "10-10-1968",
           "gender": "Male",
-          "marital_status": "Married",
+          "maritalStatus": "Married",
           "citizenship": "United States",
-          "country_of_residence": "Australia",
+          "countryOfResidence": "Australia",
           "passport": "H1234567",
-          "country_of_issuance": "Australia",
-          "issuance_date": "15-04-2010",
-          "expiration_date": "15-04-2020",
-          "no_of_dependents": 2
+          "countryOfIssuance": "Australia",
+          "issuanceDate": "15-04-2010",
+          "expirationDate": "15-04-2020",
+          "noOfDependents": 2
         },
         {
           "id": 2,
-          "full_name": "Ms Diana Stewart",
-          "short_name": "Diana Stewart",
-          "ssn": "44-55-6666",
+          "prefix": "Mrs.",
+          "firstName": "Diana",
+          "middleName": "Henry",
+          "lastName": "Stewart",
+          "shortName": "Diana Stewart",
+          "ssn": "444555666",
           "dob": "21-12-1977",
           "gender": "Female",
-          "marital_status": "Married",
+          "maritalStatus": "Married",
           "citizenship": "United States",
-          "country_of_residence": "Australia",
+          "countryOfResidence": "Australia",
           "passport": "M2231626",
-          "country_of_issuance": "Australia",
-          "issuance_date": "11-07-2012",
-          "expiration_date": "11-07-2022",
-          "no_of_dependents": 1
+          "countryOfIssuance": "Australia",
+          "issuanceDate": "11-07-2012",
+          "expirationDate": "11-07-2022",
+          "noOfDependents": 1
         },
         {
           "id": 3,
-          "full_name": "Mr Phillip Stewart",
-          "short_name": "Phil Stewart",
-          "ssn": "55-66-7777",
+          "prefix": "Mr.",
+          "firstName": "Phillip",
+          "middleName": "Matt",
+          "lastName": "Stewart",
+          "shortName": "Phil Stewart",
+          "ssn": "555666777",
           "dob": "09-04-1975",
           "gender": "Male",
-          "marital_status": "Married",
+          "maritalStatus": "Married",
           "citizenship": "United States",
-          "country_of_residence": "Australia",
+          "countryOfResidence": "Australia",
           "passport": "H2345678",
-          "country_of_issuance": "Australia",
-          "issuance_date": "25-03-2010",
-          "expiration_date": "25-03-2020",
-          "no_of_dependents": 3
+          "countryOfIssuance": "Australia",
+          "issuanceDate": "25-03-2010",
+          "expirationDate": "25-03-2020",
+          "noOfDependents": 3
         }
       ]
     }
@@ -105,7 +114,8 @@ If bootstrap was installed and setup correctly we should see the application hom
     
     > json-server --watch --host 0.0.0.0 --port 8081 --public-host $C9_HOSTNAME src/db.json
     
-- This should start a local server at http://localhost:3000(https://workspacename-username.c9user.io:8081) with the basic REST HTTP endpoints setup for us.
+- This should start a local server at http://localhost:3000(https://workspacename-username.c9user.io:8081 for cloud9) with the basic REST HTTP endpoints setup for us.
+
 - Accessing the endpoints such as GET - /users, /users/1, etc. should give us appropriate JSON response.
 
 ## Creating a service to load data exposed by json-server endpoints(setting up the backend)
