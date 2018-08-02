@@ -97,10 +97,15 @@ If bootstrap was installed and setup correctly we should see the application hom
 ```
 
 - Now run the below command that allows us to use the db.json file as our data store to save/retrieve user data:
-
-    > json-server --watch src/db.json
+  - On local machine
     
-- This should start a local server at http://localhost:3000 with the basic REST HTTP endpoints setup for us.
+    > json-server --watch src/db.json
+
+  - On cloud9(since our application is hosted on port 8080 the only other free ports available in cloud9 are: 8081 and 8082)
+    
+    > json-server --watch --host 0.0.0.0 --port 8081 --public-host $C9_HOSTNAME src/db.json
+    
+- This should start a local server at http://localhost:3000(https://workspacename-username.c9user.io:8081) with the basic REST HTTP endpoints setup for us.
 - Accessing the endpoints such as GET - /users, /users/1, etc. should give us appropriate JSON response.
 
 ## Creating a service to load data exposed by json-server endpoints(setting up the backend)
