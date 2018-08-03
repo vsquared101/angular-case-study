@@ -1,4 +1,10 @@
 <h2 class="dbrd-lbl">Dashboard</h2>
+<div  *ngIf="isCreated" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Trustee Created Successfully!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>

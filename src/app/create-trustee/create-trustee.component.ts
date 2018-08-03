@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { ValidateDropDownDefault } from '../validators/dropdown.default.validator';
 import { TrusteeService  } from '../trustee.service';
 import { Trustee } from '../trustee.model';
@@ -17,13 +19,14 @@ export class CreateTrusteeComponent implements OnInit {
   dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
   trustee: Trustee;
 
-  constructor(fb: FormBuilder, private service: TrusteeService) {
+  constructor(fb: FormBuilder, private service: TrusteeService, private router: Router) {
     this.trusteeForm = fb.group({
+      'id': [''],
       'prefix': ['Please select...', [Validators.required, ValidateDropDownDefault]],
-      'firstname': ['', Validators.required],
-      'middlename': [''],
-      'lastname': ['', Validators.required],
-      'shortname': ['', Validators.required],
+      'firstName': ['', Validators.required],
+      'middleName': [''],
+      'lastName': ['', Validators.required],
+      'shortName': ['', Validators.required],
       'ssn': ['', [Validators.required, Validators.pattern(this.ssnPattern)]],
       'gender': ['', Validators.required],
       'countryOfResidence': ['Please select...', [Validators.required, ValidateDropDownDefault]],
@@ -39,13 +42,20 @@ export class CreateTrusteeComponent implements OnInit {
   ngOnInit() {
   }
   
-  createTrustee(data) {	
+  createTrustee(data: Trustee) {	
 	   console.log('Is trusteeform valid: ' + this.trusteeForm.valid);
-	   console.log(data);
+	   console.log('create: ' + data);
+	   this.trusteeForm.setValue(data);
 	   this.trustee = data;
 	   
      this.service.createTrustee(this.trustee)
-      .subscribe((response) => console.log(response));	 
+      .subscribe((response) => {
+        console.log(response)
+        this.router.navigate(['/dashboard', {created : true}]);
+      }, (error) => {
+        console.log('Error occurred while creating a new record: ' + error);
+      });
+      
 	}
   
   resetForm(){

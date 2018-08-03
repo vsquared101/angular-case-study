@@ -6,18 +6,18 @@
             Prefix/salutation is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.firstname.touched || trusteeForm.controls.firstname.dirty) && trusteeForm.controls.firstname.invalid">
-        <div *ngIf="trusteeForm.controls.firstname.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.firstName.touched || trusteeForm.controls.firstName.dirty) && trusteeForm.controls.firstName.invalid">
+        <div *ngIf="trusteeForm.controls.firstName.errors.required">
             First name is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.lastname.touched || trusteeForm.controls.lastname.dirty) && trusteeForm.controls.lastname.invalid">
-        <div *ngIf="trusteeForm.controls.lastname.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.lastName.touched || trusteeForm.controls.lastName.dirty) && trusteeForm.controls.lastName.invalid">
+        <div *ngIf="trusteeForm.controls.lastName.errors.required">
             Last name is required.
         </div>
   </div>
-  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.shortname.touched || trusteeForm.controls.shortname.dirty) && trusteeForm.controls.shortname.invalid">
-        <div *ngIf="trusteeForm.controls.shortname.errors.required">
+  <div class="alert alert-danger" *ngIf="(trusteeForm.controls.shortName.touched || trusteeForm.controls.shortName.dirty) && trusteeForm.controls.shortName.invalid">
+        <div *ngIf="trusteeForm.controls.shortName.errors.required">
             Short name is required.
         </div>
   </div>
@@ -91,7 +91,7 @@
   <div class="form-group row">
     <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="inputFirstName" formControlName="firstname">
+      <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
     </div>
     <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
     <div class="col-sm-3">
@@ -102,7 +102,7 @@
   <div class="form-group row">
     <label for="inputMiddleName" class="col-sm-2 col-form-label">Middle Name</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename">
+      <input type="text" class="form-control" id="inputMiddleName" formControlName="middleName">
     </div>
     <label for="inputIssuanceCountry" class="col-sm-4 col-form-label">Country of Issuance</label>
     <div class="col-sm-3">
@@ -118,7 +118,7 @@
   <div class="form-group row">
     <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="inputLastName" formControlName="lastname">
+      <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
     </div>
     <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
     <div class="col-sm-3">
@@ -129,7 +129,7 @@
   <div class="form-group row">
     <label for="inputShortName" class="col-sm-2 col-form-label">Short Name</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="inputShortName"  formControlName="shortname">
+      <input type="text" class="form-control" id="inputShortName"  formControlName="shortName">
     </div>
     <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
     <div class="col-sm-3">
@@ -153,13 +153,13 @@
       <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
       <div class="col-sm-10">
         <div class="form-check">
-          <input class="form-check-input" type="radio" id="gridMale" value="male" formControlName="gender" [checked]="true">
+          <input class="form-check-input" type="radio" id="gridMale" value="Male" formControlName="gender" [checked]="true">
           <label class="form-check-label" for="gridMale">
             Male
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" id="gridFemale" value="female" formControlName="gender">
+          <input class="form-check-input" type="radio" id="gridFemale" value="Female" formControlName="gender">
           <label class="form-check-label" for="gridFemale">
             Female
           </label>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute  } from '@angular/router';
+import { ActivatedRoute, Router  } from '@angular/router';
 import { TrusteeService } from '../trustee.service';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import {DatePipe} from '@angular/common';
@@ -18,15 +18,17 @@ export class EditTrusteeComponent implements OnInit {
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
   dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
+  isUpdated: boolean = false;
 
-  constructor(private service: TrusteeService, private route: ActivatedRoute, fb: FormBuilder) { 
+  constructor(private service: TrusteeService, private route: ActivatedRoute, fb: FormBuilder, private router: Router) { 
   
     this.trusteeForm = fb.group({
+      'id': [''],
       'prefix': ['', Validators.required],
-      'firstname': ['', Validators.required],
-      'middlename': [''],
-      'lastname': ['', Validators.required],
-      'shortname': ['', Validators.required],
+      'firstName': ['', Validators.required],
+      'middleName': [''],
+      'lastName': ['', Validators.required],
+      'shortName': ['', Validators.required],
       'ssn': ['', [Validators.required, Validators.pattern(this.ssnPattern)]],
       'gender': ['', Validators.required],
       'countryOfResidence': ['', Validators.required],
@@ -42,17 +44,30 @@ export class EditTrusteeComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.id = +params['id'];
-      //console.log('id value passed is: ' + this.id);
       
       this.service.getTrusteeById(this.id)
         .subscribe((data: Trustee) => {
+          this.trusteeForm.setValue(data);
           this.trustee = data;
         });
     });
+    
+     this.route.params.subscribe(params => {
+        if (params['updated']) {
+          this.isUpdated = params['updated'];
+        }
+    });
   }
   
-  updateTrusteeRecord(data) {
-    console.log(data);
+  updateTrusteeRecord(data: Trustee) {
+    if(this.id) {
+      this.service.updateTrustee(this.id, data)
+        .subscribe((response) => {
+          this.router.navigate(['/trustees/'+ this.id + '/edit', {updated : true}]);
+        }, (error) => {
+          console.log('Error occurred while updating record: ' + error);
+        });
+    }
   }
 
 }

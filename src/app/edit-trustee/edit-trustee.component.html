@@ -1,6 +1,12 @@
 <div *ngIf="trustee">
     <h2>Update Trustee</h2>
     <hr>
+    <div  *ngIf="isUpdated" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Trustee Record Updated Successfully!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <form [formGroup]="trusteeForm" (submit)="updateTrusteeRecord(trusteeForm.value)">
       <div class="alert alert-danger" *ngIf="(trusteeForm.controls.issuanceDate.touched || trusteeForm.controls.issuanceDate.dirty) && trusteeForm.controls.issuanceDate.invalid">
         <div *ngIf="trusteeForm.controls.issuanceDate.errors.required || trusteeForm.controls.issuanceDate.errors.pattern">
@@ -36,7 +42,7 @@
       <div class="form-group row">
         <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputFirstName" formControlName="firstname" [value]="trustee.firstName">
+          <input type="text" class="form-control" id="inputFirstName" formControlName="firstName" [value]="trustee.firstName">
         </div>
         <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
         <div class="col-sm-3">
@@ -47,7 +53,7 @@
       <div class="form-group row">
         <label for="inputMiddleName" class="col-sm-2 col-form-label">Middle Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputMiddleName" formControlName="middlename" [value]="trustee.middleName">
+          <input type="text" class="form-control" id="inputMiddleName" formControlName="middleName" [value]="trustee.middleName">
         </div>
         <label for="inputIssuanceCountry" class="col-sm-4 col-form-label">Country of Issuance</label>
         <div class="col-sm-3">
@@ -63,7 +69,7 @@
       <div class="form-group row">
         <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputLastName" formControlName="lastname" [value]="trustee.lastName">
+          <input type="text" class="form-control" id="inputLastName" formControlName="lastName" [value]="trustee.lastName">
         </div>
         <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
         <div class="col-sm-3">
@@ -74,7 +80,7 @@
       <div class="form-group row">
         <label for="inputShortName" class="col-sm-2 col-form-label">Short Name</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputShortName"  formControlName="shortname" [value]="trustee.shortName">
+          <input type="text" class="form-control" id="inputShortName"  formControlName="shortName" [value]="trustee.shortName">
         </div>
         <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
         <div class="col-sm-3">
@@ -127,7 +133,7 @@
           <button type="submit" class="btn btn-outline-info" [routerLink]="['/trustees', trustee.id, 'edit']"  [disabled]="!trusteeForm.valid">Update</button>
         </div>
         <div class="col-sm-2">
-          <button type="button" class="btn btn-outline-dark" routerLink="/">Cancel</button>
+          <button type="button" class="btn btn-outline-dark" routerLink="/" [disabled]="isUpdated">Cancel</button>
         </div>
       </div>
     </form>
