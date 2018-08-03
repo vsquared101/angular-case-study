@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrusteeService } from '../trustee.service';
+import { Trustee } from '../trustee.model';
 
 @Component({
   selector: 'app-trustee-list',
@@ -7,13 +8,13 @@ import { TrusteeService } from '../trustee.service';
   styleUrls: ['./trustee-list.component.css']
 })
 export class TrusteeListComponent implements OnInit {
-  trustees: any;
+  trustees: Trustee[];
 
   constructor(private service: TrusteeService) { }
 
   ngOnInit() {
     this.service.getTrustees()
-      .subscribe((data) => {
+      .subscribe((data: Trustee[]) => {
         this.trustees = data;
       });
   }

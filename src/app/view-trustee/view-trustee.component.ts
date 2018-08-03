@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrusteeService  } from '../trustee.service';
 import { ActivatedRoute  } from '@angular/router';
+import {  Trustee } from '../trustee.model';
 
 @Component({
   selector: 'app-view-trustee',
@@ -9,7 +10,7 @@ import { ActivatedRoute  } from '@angular/router';
 })
 export class ViewTrusteeComponent implements OnInit {
   id: number;
-  trustee: any;
+  trustee: Trustee;
 
   constructor(private service: TrusteeService, private route: ActivatedRoute) { }
 
@@ -20,7 +21,7 @@ export class ViewTrusteeComponent implements OnInit {
       //console.log('id value passed is: ' + this.id);
       
       this.service.getTrusteeById(this.id)
-        .subscribe((data) => {
+        .subscribe((data: Trustee) => {
           this.trustee = data;
         });
     });

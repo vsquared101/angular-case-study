@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { ValidateDropDownDefault } from '../validators/dropdown.default.validator';
 import { TrusteeService  } from '../trustee.service';
+import { Trustee } from '../trustee.model';
 
 @Component({
   selector: 'app-create-trustee',
@@ -14,7 +15,7 @@ export class CreateTrusteeComponent implements OnInit {
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
   noOfDependentsPattern: string = '^[0-9]+$';
   dateFormat: string = '^[0-9]{2}-[0-9]{2}-[0-9]{4}$';
-  trustee: any;
+  trustee: Trustee;
 
   constructor(fb: FormBuilder, private service: TrusteeService) {
     this.trusteeForm = fb.group({

@@ -3,6 +3,7 @@ import { ActivatedRoute  } from '@angular/router';
 import { TrusteeService } from '../trustee.service';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { Trustee } from '../trustee.model';
 
 @Component({
   selector: 'app-edit-trustee',
@@ -12,7 +13,7 @@ import {DatePipe} from '@angular/common';
 export class EditTrusteeComponent implements OnInit {
 
   id: number;
-  trustee: any;
+  trustee: Trustee;
   trusteeForm: FormGroup;
   ssnPattern: string = '^[0-9]{9}$';
   passportPattern: string = '^[a-zA-Z]{1}[0-9]{7}$';
@@ -44,7 +45,7 @@ export class EditTrusteeComponent implements OnInit {
       //console.log('id value passed is: ' + this.id);
       
       this.service.getTrusteeById(this.id)
-        .subscribe((data) => {
+        .subscribe((data: Trustee) => {
           this.trustee = data;
         });
     });

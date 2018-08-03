@@ -1,0 +1,19 @@
+{
+      "id": 2,
+      "prefix": "Mrs.",
+      "firstName": "Diana",
+      "middleName": "Henry",
+      "lastName": "Stewart",
+      "shortName": "Diana Stewart",
+      "ssn": "444555666",
+      "dob": "21-12-1977",
+      "gender": "Female",
+      "maritalStatus": "Married",
+      "citizenship": "United States",
+      "countryOfResidence": "Australia",
+      "passport": "M2231626",
+      "countryOfIssuance": "Australia",
+      "issuanceDate": "11-07-2012",
+      "expirationDate": "11-07-2022",
+      "noOfDependents": 1
+}
