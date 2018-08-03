@@ -39,6 +39,6 @@ export class TrusteeService {
   }
   
   updateTrustee(id: number, data: Trustee) {
-    return this.http.put<Trustree>(this.url + '/' + id, JSON.stringify(data), httpOptions)
+    return this.http.put<Trustee>(this.url + '/' + id, JSON.stringify(data), httpOptions)
   }
 }
