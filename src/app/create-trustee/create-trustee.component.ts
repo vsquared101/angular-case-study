@@ -32,8 +32,8 @@ export class CreateTrusteeComponent implements OnInit {
       'countryOfResidence': ['Please select...', [Validators.required, ValidateDropDownDefault]],
       'passport': ['', [Validators.required, Validators.pattern(this.passportPattern)]],
       'countryOfIssuance': ['Please select...', [Validators.required, ValidateDropDownDefault]],
-      'issuanceDate' : ['', Validators.pattern(this.dateFormat)],
-      'expirationDate' : ['', Validators.pattern(this.dateFormat)],
+      'issuanceDate' : ['', [Validators.required, Validators.pattern(this.dateFormat)]],
+      'expirationDate' : ['', [Validators.required, Validators.pattern(this.dateFormat)]],
       'noOfDependents' : ['', [Validators.required, Validators.pattern(this.noOfDependentsPattern)]],
       'maritalStatus' : ['Please select...', [Validators.required, ValidateDropDownDefault]]
     });
@@ -42,20 +42,23 @@ export class CreateTrusteeComponent implements OnInit {
   ngOnInit() {
   }
   
-  createTrustee(data: Trustee) {	
-	   console.log('Is trusteeform valid: ' + this.trusteeForm.valid);
-	   console.log('create: ' + data);
-	   this.trusteeForm.setValue(data);
-	   this.trustee = data;
-	   
-     this.service.createTrustee(this.trustee)
+  createTrustee(data: Trustee) {
+
+    if(this.trusteeForm.valid) {
+      console.log('create: ' + data);
+	    this.trusteeForm.setValue(data);
+      this.trustee = data;
+
+      this.service.createTrustee(this.trustee)
       .subscribe((response) => {
         console.log(response)
         this.router.navigate(['/dashboard', {created : true}]);
       }, (error) => {
         console.log('Error occurred while creating a new record: ' + error);
       });
-      
+    } else {
+        console.log('Resolve validation errors to proceed!');
+    }
 	}
   
   resetForm(){

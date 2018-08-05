@@ -7,17 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form [formGroup]="trusteeForm" (submit)="updateTrusteeRecord(trusteeForm.value)">
-      <div class="alert alert-danger" *ngIf="(trusteeForm.controls.issuanceDate.touched || trusteeForm.controls.issuanceDate.dirty) && trusteeForm.controls.issuanceDate.invalid">
-        <div *ngIf="trusteeForm.controls.issuanceDate.errors.required || trusteeForm.controls.issuanceDate.errors.pattern">
-            Issuance Date should be provided in the format DD-MM-YYYY.
-        </div>
-      </div>
-      <div class="alert alert-danger" *ngIf="(trusteeForm.controls.expirationDate.touched || trusteeForm.controls.expirationDate.dirty) && trusteeForm.controls.expirationDate.invalid">
-        <div *ngIf="trusteeForm.controls.expirationDate.errors.required || trusteeForm.controls.expirationDate.errors.pattern">
-            Expiration Date should be provided in the format DD-MM-YYYY.
-        </div>
-      </div>
+    <form [formGroup]="trusteeForm" (ngSubmit)="updateTrusteeRecord(trusteeForm.value)" #form="ngForm">
       <div class="form-group row">
         <label for="inputPrefix" class="col-sm-2 col-form-label">Prefix</label>
         <div class="col-sm-3">
@@ -27,6 +17,11 @@
               <option>Ms.</option>
               <option>Mrs.</option>
             </select>
+            <span class="help-block" *ngIf="trusteeForm.controls.prefix.invalid && form.submitted">
+              <div *ngIf="trusteeForm.controls.prefix.errors.required || trusteeForm.controls.prefix.errors.validDropDown">
+                  Prefix is required.
+              </div>
+            </span>
         </div>
         <label for="inputResidencyCountry" class="col-sm-4 col-form-label">Country of Residence</label>
         <div class="col-sm-3">
@@ -36,6 +31,11 @@
               <option>India</option>
               <option>United States</option>
             </select>
+            <span class="help-block" *ngIf="trusteeForm.controls.countryOfResidence.invalid && form.submitted">
+              <div *ngIf="trusteeForm.controls.countryOfResidence.errors.required || trusteeForm.controls.countryOfResidence.errors.validDropDown">
+                  Please select a country of residence.
+              </div>
+            </span>
         </div>
       </div>
       <hr>
@@ -43,10 +43,23 @@
         <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputFirstName" formControlName="firstName" [value]="trustee.firstName">
+          <span class="help-block" *ngIf="trusteeForm.controls.firstName.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.firstName.errors.required">
+                First name is required.
+            </div>
+          </span>
         </div>
         <label for="inputPassport" class="col-sm-4 col-form-label">Passport #</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputPassport" formControlName="passport" [value]="trustee.passport">
+          <span class="help-block" *ngIf="trusteeForm.controls.passport.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.passport.errors.required">
+                Passport is required.
+            </div>
+            <div *ngIf="trusteeForm.controls.passport.errors.pattern">
+              Passport no. should have a single alphabet followed by 7 digits.
+            </div>
+          </span>
         </div>
       </div>
       <hr>
@@ -63,6 +76,11 @@
               <option>India</option>
               <option>United States</option>
             </select>
+            <span class="help-block" *ngIf="trusteeForm.controls.countryOfIssuance.invalid && form.submitted">
+              <div *ngIf="trusteeForm.controls.countryOfIssuance.errors.required || trusteeForm.controls.countryOfIssuance.errors.validDropDown">
+                  Please select a country of issuance.
+              </div>
+            </span>
         </div>
       </div>
       <hr>
@@ -70,10 +88,20 @@
         <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputLastName" formControlName="lastName" [value]="trustee.lastName">
+          <span class="help-block" *ngIf="trusteeForm.controls.lastName.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.lastName.errors.required">
+                Last name is required.
+            </div>
+          </span>
         </div>
         <label for="inputIssuanceDate" class="col-sm-4 col-form-label">Issuance Date</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputIssuanceDate" formControlName="issuanceDate" [value]="trustee.issuanceDate">
+          <span class="help-block" *ngIf="trusteeForm.controls.issuanceDate.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.issuanceDate.errors.required || trusteeForm.controls.issuanceDate.errors.pattern">
+                Issuance Date should be provided in the format DD-MM-YYYY.
+            </div>
+          </span>
         </div>
       </div>
       <hr>
@@ -81,10 +109,20 @@
         <label for="inputShortName" class="col-sm-2 col-form-label">Short Name</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputShortName"  formControlName="shortName" [value]="trustee.shortName">
+          <span class="help-block" *ngIf="trusteeForm.controls.shortName.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.shortName.errors.required">
+                Short name is required.
+            </div>
+          </span>
         </div>
         <label for="inputExpirationDate" class="col-sm-4 col-form-label">Expiration Date</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputExpirationDate" formControlName="expirationDate" [value]="trustee.expirationDate">
+          <span class="help-block" *ngIf="trusteeForm.controls.expirationDate.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.expirationDate.errors.required || trusteeForm.controls.expirationDate.errors.pattern">
+              Expiration Date should be provided in the format DD-MM-YYYY.
+            </div>
+          </span>
         </div>
       </div>
       <hr>
@@ -92,10 +130,23 @@
         <label for="inputSsn" class="col-sm-2 col-form-label">SSN</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputSsn" formControlName="ssn" [value]="trustee.ssn">
+          <span class="help-block" *ngIf="trusteeForm.controls.ssn.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.ssn.errors.required">
+                SSN is required.
+            </div>
+            <div *ngIf="trusteeForm.controls.ssn.errors.pattern">
+                SSN should be a numeric value with 9 digits.
+            </div>
+          </span>
         </div>
         <label for="inputNoOfDependents" class="col-sm-4 col-form-label">No Of Dependents</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputNoOfDependents" formControlName="noOfDependents" [value]="trustee.noOfDependents">
+          <span class="help-block" *ngIf="trusteeForm.controls.noOfDependents.invalid && form.submitted">
+            <div *ngIf="trusteeForm.controls.noOfDependents.errors.required || trusteeForm.controls.noOfDependents.errors.pattern">
+                A trustee can have only 0 or more dependents.
+            </div>
+          </span>
         </div>
       </div>
       <hr>
@@ -115,6 +166,11 @@
                 Female
               </label>
             </div>
+            <span class="help-block" *ngIf="trusteeForm.controls.gender.invalid && form.submitted">
+              <div *ngIf="trusteeForm.controls.gender.errors.required">
+                  Please select a value for gender.
+              </div>
+            </span>
           </div>
         </div>
       </fieldset>
@@ -126,11 +182,16 @@
               <option>Married</option>
               <option>Unmarried</option>
             </select>
+            <span class="help-block" *ngIf="trusteeForm.controls.maritalStatus.invalid && form.submitted">
+              <div *ngIf="trusteeForm.controls.maritalStatus.errors.required || trusteeForm.controls.maritalStatus.errors.validDropDown">
+                  Please select a marital status.
+              </div>
+            </span>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-2">
-          <button type="submit" class="btn btn-outline-info" [routerLink]="['/trustees', trustee.id, 'edit']"  [disabled]="!trusteeForm.valid">Update</button>
+          <button type="submit" class="btn btn-outline-info" [routerLink]="['/trustees', trustee.id, 'edit']">Update</button>
         </div>
         <div class="col-sm-2">
           <button type="button" class="btn btn-outline-dark" routerLink="/" [disabled]="isUpdated">Cancel</button>
