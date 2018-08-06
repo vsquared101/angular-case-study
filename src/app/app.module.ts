@@ -12,8 +12,6 @@ import { CreateTrusteeComponent } from './create-trustee/create-trustee.componen
 import { TrusteeListComponent } from './trustee-list/trustee-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { SsnFormatPipe } from './ssn-format.pipe';
 
 const appRoutes: Routes = [
   {
@@ -46,9 +44,7 @@ const appRoutes: Routes = [
     CreateTrusteeComponent,
     TrusteeListComponent,
     SidebarComponent,
-    HeaderComponent,
-    HomeComponent,
-    SsnFormatPipe
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
