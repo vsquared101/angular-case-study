@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Trustee } from './trustee.model';
 import { HttpHeaders } from '@angular/common/http';
+
+import { Trustee } from './trustee.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,10 +15,8 @@ const httpOptions = {
 })
 export class TrusteeService {
   
-  private url: string = 'http://localhost:3000/trustees';
-  //private url: string = 'https://angular-demo-workspace-vivekvarma01.c9users.io:8081/trustees';
-  //private url: string = 'assets/trustees.json';
-  //private url1: string = 'assets/trustee.json';
+  private url: string = 'http://localhost:3000/trustees'; // For LOCAL MACHINE
+  //private url: string = 'https://angular-demo-workspace-vivekvarma01.c9users.io:8081/trustees'; // For CLOUD 9
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +26,6 @@ export class TrusteeService {
 
   getTrusteeById(id: number) {
     return this.http.get<Trustee>(this.url + '/' + id);
-    //return this.http.get(this.url1);
   }
 
   deleteTrustee(id: number) {

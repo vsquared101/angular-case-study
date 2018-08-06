@@ -30,6 +30,23 @@ The json-server package mentioned above will provide us with the common REST end
 
 ```
 
+- Above step will allow us to use _only_ the css portion of bootstrap.
+To use bootstrap in all its entirety(including javascript handlers, popper.js, etc.) _instead_ of adding the above import we can add the below statements to the `styles` and `scripts` arrays in angular.json(or angular-cli.json depending on the version of Angular we are working with.):
+
+```json
+
+  "styles": [
+    "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "src/styles.css"
+    ],
+  "scripts": [
+    "./node_modules/jquery/dist/jquery.min.js",
+    "./node_modules/popper.js/dist/umd/popper.min.js",
+    "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+    ]
+
+```
+
 Now run the application using `ng serve`(for local machine) or `ng serve --host 0.0.0.0 --port 8080 --public-host $C9_HOSTNAME`(for cloud9) and navigate to the home page.
 If bootstrap was installed and setup correctly we should see the application home page styled differently.
 
@@ -135,32 +152,78 @@ If bootstrap was installed and setup correctly we should see the application hom
     ]
   ...
 ```
+
+- To make our application more robust we can first create an interface/model that can then be used to load/save trustee data via the different REST API endpoints. To do this we can copy a single trustee object from `db.json` file and then go to [jsonToTS](http://json2ts.com/) to generate the model for the provided data. Save the same in trustee.model.ts file:
+
+```typescript
+
+    export interface Trustee {
+        id: number;
+        prefix: string;
+        firstName: string;
+        middleName: string;
+        lastName: string;
+        shortName: string;
+        ssn: string;
+        dob: string;
+        gender: string;
+        maritalStatus: string;
+        citizenship: string;
+        countryOfResidence: string;
+        passport: string;
+        countryOfIssuance: string;
+        issuanceDate: string;
+        expirationDate: string;
+        noOfDependents: number;
+    }
+
+```
+
 - Now open the trustee.service.ts file and use DI to inject and use the HttpClient to make REST API calls:
 
 ```typescript
 
-  import { Injectable } from '@angular/core';
-  import { HttpClient } from '@angular/common/http';
+    import { Injectable } from '@angular/core';
+    import { HttpClient } from '@angular/common/http';
+    import { Trustee } from './trustee.model';
+    import { HttpHeaders } from '@angular/common/http';
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class TrusteeService {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
 
-    constructor(private http: HttpClient) { }
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class TrusteeService {
 
-    getTrustees() {
-      return this.http.get('http://localhost:3000/trustees');
+      private url: string = 'http://localhost:3000/trustees'; // For LOCAL MACHINE
+      // private url: string = 'https://angular-demo-workspace-vivekvarma01.c9users.io:8081/trustees'; // For CLOUD 9
+
+      constructor(private http: HttpClient) { }
+
+      getTrustees() {
+        return this.http.get<Trustee[]>(this.url);
+      }
+
+      getTrusteeById(id: number) {
+        return this.http.get<Trustee>(this.url + '/' + id);
+      }
+
+      deleteTrustee(id: number) {
+        return this.http.delete(this.url + '/' + id);
+      }
+
+      createTrustee(data: Trustee){
+        return this.http.post<Trustee>(this.url, JSON.stringify(data), httpOptions);
+      }
+
+      updateTrustee(id: number, data: Trustee) {
+        return this.http.put<Trustee>(this.url + '/' + id, JSON.stringify(data), httpOptions)
+      }
     }
-    
-    getTrusteeById(id: number) {
-      return this.http.get('http://localhost:3000/trustees/' + id);
-    }
-    
-    deleteTrustee(id: number) {
-      return this.http.delete('http://localhost:3000/trustees/' + id);
-    }
-  }
 
 ```
 
@@ -198,25 +261,26 @@ If bootstrap was installed and setup correctly we should see the application hom
   > ng generate component edit-trustee
 
 - To speed up the process of creating the screens we can make use of the Dashboard example available in bootstrap.
-- Go to <https://getbootstrap.com/docs/4.1/examples/dashboard/> to view the Dashboard and get the source code.
+- Go to [Bootstrap Dashboard](https://getbootstrap.com/docs/4.1/examples/dashboard/) to view the Dashboard and get the source code.
 - Of the above components the `Header` and `Sidebar` components will be visible for all the views.
 - The remaining components `TrusteeList`, `CreateTrustee`, `EditTrustee` and `ViewTrustee` will be switched based on the route we navigate to.
 
 ## Loading data within the components using the service that was created earlier
 
-- Open trustee-list.component.ts and add below import for the TrusteeService in it:
+- Open trustee-list.component.ts and add below imports to it:
 
 ```typescript
 
   import { TrusteeService } from '../trustee.service';
-  
+  import { Trustee } from '../trustee.model';
+
 ```
 
 - Now create a private property for the service by updating the constructor. Also create a property called `trustees` that we can use later to store the data retrieved.
 
 ```typescript
 
-  trustees: any;
+  trustees: Trustee[];
 
   constructor(private service: TrusteeService) { }
 
@@ -229,7 +293,7 @@ If bootstrap was installed and setup correctly we should see the application hom
 
   ngOnInit() {
     this.service.getTrustees()
-      .subscribe((data) => {
+      .subscribe((data: Trustee[]) => {
         this.trustees = data;
       });
   }
