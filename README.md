@@ -8,13 +8,13 @@ The json-server package mentioned above will provide us with the common REST end
 ## Pre-requisites
 
 - Node(with npm) and Angular CLI should be installed.
+- Visual Studio Code or Cloud9 IDE to write code.
 
 ## Tech-stack used
 
-- Angular(version 6.x)
+- Node JS
+- Angular(version 4.3+)
 - Bootstrap(version 4.x)
-- JSON
-- Node basics(incl. addition/removal of npm packages)
 
 ## Adding Bootstrap v4+ to an Angular application
 
@@ -264,6 +264,7 @@ If bootstrap was installed and setup correctly we should see the application hom
 - Go to [Bootstrap Dashboard](https://getbootstrap.com/docs/4.1/examples/dashboard/) to view the Dashboard and get the source code.
 - Of the above components the `Header` and `Sidebar` components will be visible for all the views.
 - The remaining components `TrusteeList`, `CreateTrustee`, `EditTrustee` and `ViewTrustee` will be switched based on the route we navigate to.
+- Demonstrating **_all_** the code changes that need to be made to create the different screens as part of _this_ document is **_out-of-scope_**.
 
 ## Loading data within the components using the service that was created earlier
 
@@ -310,3 +311,11 @@ If bootstrap was installed and setup correctly we should see the application hom
   </div>
 
 ```
+
+## Steps to run the application(on local machine)
+
+1. Go to the project's [GitHub Repo](https://github.com/vsquared101/angular-case-study) and clone/download the code to local machine.
+2. In the project root open the command prompt and run `npm install` to install all the dependencies for the application.
+3. Once the above step is completed(it may take some time) run the `json-server --watch src/db.json` command to make the REST endpoints such as GET /trustees, GET /trustees/:id, etc. available. The default port for json-server is _3000_.
+4. Open another command window and run `ng serve` to start the Angular application. The application runs on port _4200_ by default.
+5. In the browser open http://localhost:4200 to view the application.
