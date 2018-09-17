@@ -72,7 +72,6 @@ If bootstrap was installed and setup correctly we should see the application hom
           "dob": "10-10-1968",
           "gender": "Male",
           "maritalStatus": "Married",
-          "citizenship": "United States",
           "countryOfResidence": "Australia",
           "passport": "H1234567",
           "countryOfIssuance": "Australia",
@@ -91,7 +90,6 @@ If bootstrap was installed and setup correctly we should see the application hom
           "dob": "21-12-1977",
           "gender": "Female",
           "maritalStatus": "Married",
-          "citizenship": "United States",
           "countryOfResidence": "Australia",
           "passport": "M2231626",
           "countryOfIssuance": "Australia",
@@ -110,7 +108,6 @@ If bootstrap was installed and setup correctly we should see the application hom
           "dob": "09-04-1975",
           "gender": "Male",
           "maritalStatus": "Married",
-          "citizenship": "United States",
           "countryOfResidence": "Australia",
           "passport": "H2345678",
           "countryOfIssuance": "Australia",
@@ -168,7 +165,6 @@ If bootstrap was installed and setup correctly we should see the application hom
         dob: string;
         gender: string;
         maritalStatus: string;
-        citizenship: string;
         countryOfResidence: string;
         passport: string;
         countryOfIssuance: string;

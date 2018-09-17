@@ -9,7 +9,6 @@ export interface Trustee {
     dob: string;
     gender: string;
     maritalStatus: string;
-    citizenship: string;
     countryOfResidence: string;
     passport: string;
     countryOfIssuance: string;
