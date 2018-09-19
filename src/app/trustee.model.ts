@@ -6,7 +6,6 @@ export interface Trustee {
     lastName: string;
     shortName: string;
     ssn: string;
-    dob: string;
     gender: string;
     maritalStatus: string;
     countryOfResidence: string;
