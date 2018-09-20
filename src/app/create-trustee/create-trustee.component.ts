@@ -54,7 +54,7 @@ export class CreateTrusteeComponent implements OnInit {
         console.log(response)
         this.router.navigate(['/dashboard', {created : true}]);
       }, (error) => {
-        console.log('Error occurred while creating a new record: ' + error);
+        console.log('Error occurred while creating a new record: ' + JSON.stringify(error));
       });
     } else {
         console.log('Resolve validation errors to proceed!');
