@@ -18,7 +18,7 @@ export class TrusteeService {
   //private url: string = 'http://localhost:8080/trustees'; // For LOCAL MACHINE with Spring Boot back-end
   //private url: string = 'http://localhost:3000/trustees'; // For LOCAL MACHINE with json-server back-end
   //private url: string = 'https://angular-demo-workspace-vivekvarma01.c9users.io:8081/trustees'; // For CLOUD 9
-  private url: string = 'https://trustee-management-service.cfapps.io/trustees'; // PCF instance name
+  private url: string = 'https://trustee-management-service.cfapps.io/trustees'; // PCF route-url for Spring Boot Back-end
 
   constructor(private http: HttpClient) { }
 
