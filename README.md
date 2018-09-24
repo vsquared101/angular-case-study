@@ -313,23 +313,23 @@ If bootstrap was installed and setup correctly we should see the application hom
 1. Install the Cloud Foundry CLI.
 2. Login to pivotal using the below command in CF CLI:
 
-  > cf login -a api.run.pivotal.io
+    > cf login -a api.run.pivotal.io
 
 3. Provide the `Email` and `Password` and select `org` and `spaces`(if prompted).
 4. Run the below command to build the Angular application using Angular CLI:
 
-  > ng build
+    > ng build
 
 5. Above command will create a `dist` folder along with the source code.
 6. Make sure all the files generated after the build are directly available inside the `dist` folder and **not** inside another folder with the name same as the project\'s name.
 7. Change(cd) to the `dist` folder.
 8. On the command line provide the below command to push the code inside dist folder to PCF:
 
-  > cf push -b staticfile_buildpack <app-name>
+    > cf push -b staticfile_buildpack <app-name>
 
 9. The application code will be pushed to PCF using the staticfile buildpack and we can check if the deployment was successful using:
 
-  > cf apps
+    > cf apps
 
 10. Above command will display the app name along with the route URL to access our front-end app deployed in PCF. Navigate to this URL to access and test the application.
 
