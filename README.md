@@ -16,6 +16,17 @@ The json-server package mentioned above will provide us with the common REST end
 - Angular(version 17.3)
 - Bootstrap(version 5.3)
 
+## Application Architecture
+```mermaid
+flowchart LR
+  FE["Angular 17( Front-End<br>with styling using Bootstrap JS)<br><br>"]:::orange <--> BE["Node JS(Backend and server support)"]:::green
+  BE <--> DB["Database<br>(Created with JSON file<br>using json-server NPM package)<br><br>"]:::brown
+  
+  classDef orange fill:orange;
+  classDef green fill:green;
+  classDef brown fill:brown;
+```
+
 ## Adding Bootstrap v5+ to an Angular application
 
 - Install `bootstrap` and `bootstrap-icons` npm libraries with the --save option(production dependencies in package.json)
