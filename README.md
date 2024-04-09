@@ -1,8 +1,8 @@
 # A case-study in Angular
 
-A case study in Angular(version 4+) which involves creation of a test application. 
+A case study in Angular(version 17, recently updated from version 6.1) which involves creation of a sample front-end application. 
 No back-end will be created for this application as a lightweight NPM package called json-server will be used instead.
-Data that is to be stored/retrieved will be handled by using a db.json file which will act as a substitute for a database(for e.g. MongoDB).
+Data that is to be stored/retrieved will be handled by using a db.json file which will act as a substitute for a database.
 The json-server package mentioned above will provide us with the common REST endpoints that allow us to perform CRUD operations on the data using the Angular app.
 
 ## Pre-requisites
