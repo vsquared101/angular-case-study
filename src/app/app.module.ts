@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
