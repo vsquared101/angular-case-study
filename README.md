@@ -287,12 +287,17 @@ If bootstrap was installed and setup correctly we should see the application hom
   - ViewTrustee
 - Use below commands to create the components:
 
-> ng generate component header
-> ng generate component sidebar
-> ng generate component trustee-list
-> ng generate component create-trustee
-> ng generate component view-trustee
-> ng generate component edit-trustee
+  > ng generate component header
+
+  > ng generate component sidebar
+
+  > ng generate component trustee-list
+
+  > ng generate component create-trustee
+
+  > ng generate component view-trustee
+
+  > ng generate component edit-trustee
 
 - To speed up the process of creating the screens we can make use of the Dashboard example available in bootstrap.
 - Go to [Bootstrap Dashboard](https://getbootstrap.com/docs/4.1/examples/dashboard/) to view the Dashboard and get the source code.
