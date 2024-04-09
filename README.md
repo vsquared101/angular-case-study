@@ -16,13 +16,13 @@ The json-server package mentioned above will provide us with the common REST end
 - Angular(version 17.3)
 - Bootstrap(version 5.3)
 
-## Adding Bootstrap v4+ to an Angular application
+## Adding Bootstrap v5+ to an Angular application
 
-- Install bootstrap, jquery and popper.js npm packages with the --save option(production dependencies in package.json)
+- Install `bootstrap` and `bootstrap-icons` npm libraries with the --save option(production dependencies in package.json)
 
-    > npm install bootstrap jquery popper.js --save
+    > npm install bootstrap bootstrap-icons --save
 
-- Once the above packages are installed add the below import to the global `styles.css` file under the src/ folder:
+- Once the above packages are installed add the below import to the global `styles.scss` file under the src/ folder:
 
 ```css
 
@@ -31,23 +31,64 @@ The json-server package mentioned above will provide us with the common REST end
 ```
 
 - Above step will allow us to use _only_ the css portion of bootstrap.
-To use bootstrap in all its entirety(including javascript handlers, popper.js, etc.) _instead_ of adding the above import we can add the below statements to the `styles` and `scripts` arrays in angular.json(or angular-cli.json depending on the version of Angular we are working with.):
+To use bootstrap in all its entirety(including javascript handlers, popper.js, etc.) along with adding the above import,
+we can add the below statements to the `styles` and `scripts` arrays in angular.json(version 17 of Angular):
 
 ```json
-
+{
   "styles": [
-    "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-    "src/styles.css"
-    ],
+    "./node_modules/bootstrap/scss/bootstrap.scss",
+    "./node_modules/bootstrap-icons/font/bootstrap-icons.css",
+    "src/styles.scss"
+  ],
   "scripts": [
-    "./node_modules/jquery/dist/jquery.min.js",
-    "./node_modules/popper.js/dist/umd/popper.min.js",
-    "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-    ]
-
+    "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+  ]
+}
 ```
 
-Now run the application using `ng serve`(for local machine) or `ng serve --host 0.0.0.0 --port 8080 --public-host $C9_HOSTNAME`(for cloud9) and navigate to the home page.
+- Now install the @ng-bootstrap/ng-bootstrap library which contains native Angular support:
+
+> npm install @ng-bootstrap/ng-bootstrap@next
+
+- After install, import the `NgbModule` module. Change the `app.module.ts` file and add the lines as below:
+
+```ts
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+imports: [
+  BrowserModule,
+  NgbModule,
+  AppRoutingModule,
+]
+```
+
+- In `src/app/app.component.ts` file, import the `NgbModal` service and create the open method to open a modal as below:
+
+```ts
+import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+export class AppComponent {
+
+  constructor(private modalService: NgbModal) {
+  }
+
+  public open(modal: any): void {
+    this.modalService.open(modal);
+  }
+
+}
+```
+
+- In `src/app/app.component.html` start using the classes available in bootstrap 5 to style your page(s).
+
+Now run the application using `ng serve`(for local machine) and navigate to the home page.
 If bootstrap was installed and setup correctly we should see the application home page styled differently.
 
 ## Using json-server to quickly setup REST API endpoints
