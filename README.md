@@ -276,23 +276,23 @@ If bootstrap was installed and setup correctly we should see the application hom
 
 ## Following component-based approach to design the application UI
 
-- With Bootstrap v4 added and the backend setup we can now proceed with designing the UI screens for the application.
+- With Bootstrap v5 added and the backend setup we can now proceed with designing the UI screens for the application.
 - As with any Single Page Application we have to think in terms of 'components' that will make up the views.
-- For this case study we can create the below mentioned components:
+- For this case study we can create the below components:
   - Header
   - Sidebar
   - TrusteeList
   - CreateTrustee
   - EditTrustee
   - ViewTrustee
-- Use below commands to create the above components:
+- Use below commands to create the components:
 
-  > ng generate component header
-  > ng generate component sidebar
-  > ng generate component trustee-list
-  > ng generate component create-trustee
-  > ng generate component view-trustee
-  > ng generate component edit-trustee
+> ng generate component header
+> ng generate component sidebar
+> ng generate component trustee-list
+> ng generate component create-trustee
+> ng generate component view-trustee
+> ng generate component edit-trustee
 
 - To speed up the process of creating the screens we can make use of the Dashboard example available in bootstrap.
 - Go to [Bootstrap Dashboard](https://getbootstrap.com/docs/4.1/examples/dashboard/) to view the Dashboard and get the source code.
