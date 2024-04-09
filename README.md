@@ -8,13 +8,13 @@ The json-server package mentioned above will provide us with the common REST end
 ## Pre-requisites
 
 - Node(with npm) and Angular CLI should be installed.
-- Visual Studio Code or Cloud9 IDE to write code.
+- Visual Studio Code IDE should be installed.
 
 ## Tech-stack used
 
-- Node JS
-- Angular(version 4.3+)
-- Bootstrap(version 4.x)
+- Node JS(version 20.12.1)
+- Angular(version 17.3)
+- Bootstrap(version 5.3)
 
 ## Adding Bootstrap v4+ to an Angular application
 
