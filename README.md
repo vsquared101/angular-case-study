@@ -93,13 +93,13 @@ If bootstrap was installed and setup correctly we should see the application hom
 
 ## Using json-server to quickly setup REST API endpoints
 
-- Install json-server with the --save option(this is temporary as we would use an actual backend in production)
+- Install json-server globally on the system(this is temporary as we would use an actual backend in production)
     
-    > npm install json-server --save
+> npm install -g json-server
 
 - In the `src` folder create a file named `db.json` with the below contents:
 
-```javascript
+```json
     {
       "trustees": [
         {
@@ -161,15 +161,11 @@ If bootstrap was installed and setup correctly we should see the application hom
 ```
 
 - Now run the below command that allows us to use the db.json file as our data store to save/retrieve trustee data:
-  - On local machine
+- On local machine
     
-    > json-server --watch src/db.json
-
-  - On cloud9(since our application is hosted on port 8080 the only other free ports available in cloud9 are: 8081 and 8082)
+> json-server --watch src/db.json
     
-    > json-server --watch --host 0.0.0.0 --port 8081 --public-host $C9_HOSTNAME src/db.json
-    
-- This should start a local server at http://localhost:3000(https://workspacename-username.c9user.io:8081 for cloud9) with the basic REST HTTP endpoints setup for us.
+- This should start a local server at http://localhost:3000 with the basic REST HTTP endpoints setup for us.
 
 - Accessing the endpoints such as GET - /trustees, /trustees/1, etc. should give us appropriate JSON response.
 
@@ -191,7 +187,9 @@ If bootstrap was installed and setup correctly we should see the application hom
   ...
 ```
 
-- To make our application more robust we can first create an interface/model that can then be used to load/save trustee data via the different REST API endpoints. To do this we can copy a single trustee object from `db.json` file and then go to [jsonToTS](http://json2ts.com/) to generate the model for the provided data. Save the same in trustee.model.ts file:
+- To make our application more robust we can first create an interface/model that can be used to load/save trustee data via the different REST API endpoints. 
+- To implement this we can copy a single trustee object from `db.json` file and then go to [jsonToTS](http://json2ts.com/) to generate the model for the provided data. 
+- Save the same in trustee.model.ts file:
 
 ```typescript
 
@@ -237,7 +235,6 @@ If bootstrap was installed and setup correctly we should see the application hom
     export class TrusteeService {
 
       private url: string = 'http://localhost:3000/trustees'; // For LOCAL MACHINE
-      // private url: string = 'https://angular-demo-workspace-vivekvarma01.c9users.io:8081/trustees'; // For CLOUD 9
 
       constructor(private http: HttpClient) { }
 
